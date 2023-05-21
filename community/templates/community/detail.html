@@ -5,7 +5,7 @@
 
 {% if user == review.user or user.is_superuser %}
 <div>
-<form action="{% url 'reviewboard:delete' review.pk %}" method="POST">
+<form action="{% url 'community:delete' review.pk %}" method="POST">
 </form>
 </div>
 {% endif %}
@@ -47,16 +47,16 @@
         
           {% if user == review.user %}
           <div>
-            <form action="{% url 'reviewboard:delete' review.pk %}" method="POST">
+            <form action="{% url 'community:delete' review.pk %}" method="POST">
               <button style="color: #F3F3F3; --bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; 
-              --bs-btn-font-size: .9rem;" class=" btn btn-outline-secondary "><a href="{% url 'reviewboard:update' review.pk %}" class=" text-decoration-none" style="color: #F3F3F3;">수정</a></button>
+              --bs-btn-font-size: .9rem;" class=" btn btn-outline-secondary "><a href="{% url 'community:update' review.pk %}" class=" text-decoration-none" style="color: #F3F3F3;">수정</a></button>
               {% csrf_token %}
               <button style="color: #F3F3F3; --bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; 
               --bs-btn-font-size: .9rem;" class=" btn btn-outline-secondary ">삭제</button>
             </form>
           </div>
           {% endif %}
-          <a href="{% url 'reviewboard:index' %}" role="button" style="color: #F3F3F3; --bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; 
+          <a href="{% url 'community:index' %}" role="button" style="color: #F3F3F3; --bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; 
           --bs-btn-font-size: .9rem;" class="ms-1 btn btn-outline-secondary ">리뷰 목록</a> 
         </div>
         <hr>
@@ -70,7 +70,7 @@
               {{ comment.content }} -작성자: <a href="{% url 'accounts:profile' comment.user.username %}">{{comment.user}}</a>
               
               {% if user == comment.user %}
-                <form action="{% url 'reviewboard:comments_delete' review.pk comment.pk %}" method="POST" class="d-inline">
+                <form action="{% url 'community:comments_delete' review.pk comment.pk %}" method="POST" class="d-inline">
                   {% csrf_token %}
                   <input type="submit" value="삭제" style="color: #F3F3F3; --bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; 
                   --bs-btn-font-size: .9rem;" class="btn btn-outline-secondary">
@@ -84,7 +84,7 @@
 
         <hr>
         {% if request.user.is_authenticated %}
-          <form action="{% url 'reviewboard:comments_create' review.pk %}" method="POST">
+          <form action="{% url 'community:comments_create' review.pk %}" method="POST">
             {% csrf_token %}
             {{ comment_form }}
             <input type="submit" style="color: #F3F3F3; --bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; 
@@ -126,7 +126,7 @@ const csrftoken = getCookie('csrftoken');
     form.addEventListener('click', function(event) {
       event.preventDefault()
       const reviewId = event.target.dataset.reviewId
-      const URL = `/reviewboard/${reviewId}/like/`
+      const URL = `/community/${reviewId}/like/`
       {% comment %} const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value {% endcomment %}
       axios({
         method: 'post',
