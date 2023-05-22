@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
-<!-- {% load bootstrap_pagination %} -->
+{% load bootstrap_pagination %}
 {% load static %}
 {% block content %}
 <div style="padding-top: 8px + 1vh;">
   <section class="main-container">
     <h2 id="myList" style="margin-top: 7vmin; font-weight: bold;">영화</h2>
     <div class="box mt-4">
-      {% for movie in movies %}
+      {% for movie in page %}
       <a class="my-auto" href="{% url 'movies:detail' movie.pk %}">
         <img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" 
           class="card-img-top poster-img" alt="...">
@@ -16,28 +16,24 @@
     </div>
   </section>
 
-  <!-- <div class="mt-4 d-flex justify-content-center">
-    {% bootstrap_paginate page_obj range=5 show_prev_next="false" show_first_last="true" %}
-  </div> -->
+  <div class="mt-4 d-flex justify-content-center">
+    {% bootstrap_paginate page range=10 show_prev_next="false" show_first_last="true" %}
+  </div>
 </div>
 
 <style>
 
-  /* .pagination {
-    focus-box-shadow: 0 0 0 0 #141414 !important;
-  }
   .pagination .page-link {
-    background: #141414;
-    color: #686868 ;  
-    
-    border-width: 1vmin;
+    background: white;
+    color: white ;
+    color: black;
+    border-width: 1px;
     border-color:  #141414;
-    border-radius: 50%;
   }
   .page-item.active .page-link {
-    color: #F3F3F3;
- 
-  } */
+    color: #FFFFFF;
+    background-color: #141414;
+  }
 </style>
 {% endblock content %}
 

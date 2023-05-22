@@ -21,14 +21,14 @@ def index(request):
         for i in range(len(my_reviews)):
             my_movies.append(Movie.objects.get(pk=my_reviews[i].movie_id))
         
-        print_my_movies = my_movies[:12]
+        print_my_movies = my_movies[:6]
     else:
         print_my_movies = []
         
         
-    popular_movies = Movie.objects.all().order_by('-popularity')[:12]
+    popular_movies = Movie.objects.all().order_by('-popularity')[:6]
 
-    best_movies = Movie.objects.all().order_by('-vote_average')[:12]
+    best_movies = Movie.objects.all().order_by('-vote_average')[:6]
 
     context = {
         'print_my_movies': print_my_movies,
@@ -40,15 +40,15 @@ def index(request):
 
 
 def all(request):
-    movies = Movie.objects.all()
+    movies = Movie.objects.all().order_by('id')
 
     page = Paginator(movies, 12)
-    page_num = request.GET.get('page')
-    page_obj = page.get_page(page_num)
+    num = request.GET.get('page')
+    page = page.get_page(num)
 
     context = {
         'movies': movies,
-        'page_obj' : page_obj,
+        'page' : page,
     }
     return render(request, 'movies/all.html', context)
 

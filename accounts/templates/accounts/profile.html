@@ -13,27 +13,6 @@
         --bs-btn-font-size: 1.2rem; margin-top:60px;" class="  btn btn-outline-secondary ">회원정보수정</a>
         {% endif %}
       </div>
-      <!-- {% with followings=person.followings.all followers=person.followers.all %}
-      <div>
-        <div>
-          팔로워 : <span id="followers-count">{{ person.followers.all|length }}</span> / 
-          팔로잉 : <span id="followings-count">{{ person.followings.all|length }}</span>
-        </div>
-        {% if user != person %}
-        <div>
-          <form id="follow-form" data-user-pk="{{ person.pk }}">
-            {% csrf_token %}
-            {% if request.user in person.followers.all %}
-            <input type="submit" value="언팔로우" />
-            {% else %}
-            <input type="submit" value="팔로우" />
-            {% endif %}
-          </form>
-        </div>
-        {% endif %}
-      </div>
-      {% endwith %} -->
-
 
     <div>
         <div>
@@ -45,9 +24,11 @@
                 <form action="{% url 'accounts:follow' person.username %}" method="POST">
                     {% csrf_token %}
                     {% if request.user in person.followers.all %}
-                        <input type="submit" value="Unfollow">
+                        <input type="submit" value="언팔로우" style="color: #F3F3F3; --bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; 
+                        --bs-btn-font-size: .9rem;" class="  btn btn-outline-secondary">
                     {% else %}
-                        <input type="submit" value="Follow">
+                        <input type="submit" value="팔로우" style="color: #F3F3F3; --bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; 
+                        --bs-btn-font-size: .9rem;" class="  btn btn-outline-secondary">
                     {% endif %}
                 </form>
             </div>
