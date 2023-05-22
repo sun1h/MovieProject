@@ -13,9 +13,10 @@
  
       </div>
       <div class="col-12 col-lg-8 my-auto  ">
-        <p class="" style="color:#686868;">{{movie.release_date}} 개봉</p>
+        <br>
         <h2 class="pb-2">{{ movie.title }}</h2>
-        <p class="">장르 : {{ genre }} <i style=" " class="ms-5 bi bi-star"></i>{{movie.vote_average}}</p>
+        <p class="">{{movie.release_date}} 개봉</p>
+        <p class="">장르 : {{ genre }} <i style=" " class="ms-5 bi bi-star-fill"></i>{{movie.vote_average}}</p>
         <p class="mb-3 ">{{ movie.overview }}</p>
         {% if request.user.is_authenticated %}
           {% if user in movie.like_users.all %}
@@ -50,7 +51,7 @@
       {% else %}
         <div>
           <div>
-            <div class="d-inline-block " style="h6;">
+            <div class="d-inline-block " style="">
               {% if rate.star == 1 %}
                 <i class="bi bi-star-fill"></i>
                 <i class="bi bi-star"></i>

@@ -5,56 +5,24 @@
 <div style="padding-top: 8px + 1vh;">
   <section class="main-container">
     
-    <div style="text-align: center;">
-      <div class="box mt-4">
-        {% for movie in movies %}
-          <div style="font-size: 12px;">
-            <img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" 
-            class="card-img-top poster-img btn" alt="..." onclick="select()">
-            <br><br>
-            <p>{{ movie.title }}</p>
-          </div>
-        {% endfor %} 
-      </div>
+    <h3 id="myList" style="margin-top: 7vmin; font-weight: bolder;">마음에 드는 영화를 선택하여 영화를 추천받아 보세요!</h3>
+    <div class="box mt-4">
+      {% for movie in movies %}
+      <img id="click-img" src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" 
+        class="card-img-top poster-img" alt="...">
+      {% endfor %} 
+    </div>
 
-      <button type="button" id="modalBtn" style="color: #F3F3F3; --bs-btn-padding-y: .65rem; --bs-btn-padding-x: .8rem; 
-      --bs-btn-font-size: 1.2rem; margin-top:60px; display: inline-block" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <div class="d-flex justify-content-center">
+      <button type="button" style="color: #F3F3F3; background-color: #870FEA; --bs-btn-padding-y: .65rem; --bs-btn-padding-x: .8rem; 
+      --bs-btn-font-size: 1.2rem; margin-top:60px; display: inline-block" class="btn">
         영화 추천 받아보기
       </button>
     </div>
 
-    <br>
+    <br><br>
     <hr>
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-fullscreen modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content">
-          <div class="modal-header">
-            
-            <h1 class="modal-title fs-5" id="exampleModalLabel">마음에 드는 영화를 선택해보세요!</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <div class="box mt-4">
-              {% for movie in movies %}
-              <div style="font-size: 12px;">
-                <img id="modal-img-{{forloop.counter}}" src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" 
-                class="card-img-top poster-img btn" alt="..." onclick="select(this)">
-                <br><br>
-                <p>{{ movie.title }}</p>
-              </div>
-              {% endfor %} 
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" style="background-color: #870FEA; color: white;" class="btn" data-bs-dismiss="modal">선택완료</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div id="test">
-      안녕
-    </div>
     <h3 id="myList" style="margin-top: 7vmin; font-weight: bold;">장르별 영화추천</h3>
 
     <h5 style="margin-top: 5vh;">Action</h5>
@@ -110,30 +78,21 @@
 </div>
 
 <style>
-
-  .modal-content {
-    background-color: #141414;
-  }
-  #test{
-    display: none;
-  }
-
   /* style="filter: brightness(50%)"  */
-  #modal-img{
-    filter: 100%;
+  .is_selected {
+    filter: brightness(50%);
   }
-
 </style>
 {% endblock content %}
 
 {% block script %}
 <script>
-  function select(img_element) {
-    if (img_element.style.filter === "brightness(100%)" ) {
-      img_element.style.filter = "brightness(50%)";
-    } else {
-      img_element.style.filter = "brightness(100%)";
-    }
+  const imgTag = document.getElementById('#click-img');
+  const movieList = [];
+
+  function select(imgTag) {
+    console.log('좀되라고')
+    imgTag.classList.toggle('is_selected');
   }
 </script>
 {% endblock script %}
