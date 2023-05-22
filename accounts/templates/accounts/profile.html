@@ -13,7 +13,7 @@
         --bs-btn-font-size: 1.2rem; margin-top:60px;" class="  btn btn-outline-secondary ">회원정보수정</a>
         {% endif %}
       </div>
-      {% with followings=person.followings.all followers=person.followers.all %}
+      <!-- {% with followings=person.followings.all followers=person.followers.all %}
       <div>
         <div>
           팔로워 : <span id="followers-count">{{ person.followers.all|length }}</span> / 
@@ -32,7 +32,28 @@
         </div>
         {% endif %}
       </div>
-      {% endwith %}
+      {% endwith %} -->
+
+
+    <div>
+        <div>
+          
+          팔로워 : {{ person.followers.all | length }}  &nbsp | &nbsp 팔로잉 : {{ person.followings.all | length }}
+        </div>
+        {% if request.user != person %}
+            <div>
+                <form action="{% url 'accounts:follow' person.username %}" method="POST">
+                    {% csrf_token %}
+                    {% if request.user in person.followers.all %}
+                        <input type="submit" value="Unfollow">
+                    {% else %}
+                        <input type="submit" value="Follow">
+                    {% endif %}
+                </form>
+            </div>
+        {% endif %}
+    </div>
+   
       <hr class="mx-auto ">
       <h3 style="margin-top: 2vh;">My Favorite Genres</h3>
       {% if genre_print != '' %}
@@ -102,10 +123,10 @@
     event.preventDefault()
     
     const userPk = event.target.dataset.userPk
-
+    
     axios({
       method: 'post',
-      url: `/accounts/${userPk}/follow/`,
+      url: `/accounts/${userPk}/follow/`, 
       headers: {'X-CSRFToken': csrftoken,}
     })
     .then((response) => {

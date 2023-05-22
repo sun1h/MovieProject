@@ -153,25 +153,41 @@ def profile(request, username):
     # # }
     # # return render(request, 'accounts/profile.html', context)
 
-@login_required
-@require_POST
-def follow(request, user_pk):
-    if request.user.is_authenticated:
-        person = get_object_or_404(get_user_model(), pk=user_pk)
-        user = request.user
+# @login_required
+# @require_POST
+# def follow(request, user_pk):
+#     print('hi')
+#     if request.user.is_authenticated:
+#         person = get_object_or_404(get_user_model(), pk=user_pk)
+#         print(person)
+#         print('hi')
+#         user = request.user
 
-        if person != user:
-            if person.followers.filter(pk=user.pk).exists():
-                person.followers.remove(user)
-                is_followed = False
+#         if person != user:
+#             if person.followers.filter(pk=user.pk).exists():
+#                 person.followers.remove(user)
+#                 is_followed = False
+#             else:
+#                 person.followers.add(user)
+#                 is_followed = True
+#             context = {
+#                 'is_followed': is_followed,
+#                 'followers_count': person.followers.count(),
+#                 'followings_count': person.followings.count(),
+#             }
+#             return JsonResponse(context)
+#         return redirect('accounts:profile', person.username)
+#     return redirect('accoutns:login')
+
+@require_POST
+def follow(request, username):
+    if request.user.is_authenticated:
+        User=get_user_model()
+        person=User.objects.get(username=username)
+        if person != request.user:
+            if person.followers.filter(username=request.user).exists():
+                person.followers.remove(request.user)
             else:
-                person.followers.add(user)
-                is_followed = True
-            context = {
-                'is_followed': is_followed,
-                'followers_count': person.followers.count(),
-                'followings_count': person.followings.count(),
-            }
-            return JsonResponse(context)
+                person.followers.add(request.user)
         return redirect('accounts:profile', person.username)
-    return redirect('accoutns:login')
+    return redirect('accounts:login')
