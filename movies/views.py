@@ -42,7 +42,7 @@ def index(request):
 def all(request):
     movies = Movie.objects.all().order_by('id')
 
-    page = Paginator(movies, 12)
+    page = Paginator(movies, 18)
     num = request.GET.get('page')
     page = page.get_page(num)
 
@@ -150,12 +150,22 @@ def delete_rate(request, movie_pk, rate_pk):
         rate.delete()
     return redirect('movies:detail', movie.pk)
 
-
+@login_required
 def recommendation(request):
-    fruit_list = ["귤","딸기","사과","감","바나나","파인애플","구아바", "복숭아", "망고스틴"]
-    hate = ["사과","구아바"]
-    context = {
-        'fruit_name' : fruit_list,
-        'hate' : hate,
-    }
+    if request.user.is_authenticated:
+        movies = Movie.objects.order_by('?')[:12]
+        action = Movie.objects.filter(genres=28).order_by('?')[:6]
+        animation = Movie.objects.filter(genres=16).order_by('?')[:6]
+        comedy = Movie.objects.filter(genres=35).order_by('?')[:6]
+        fantasy = Movie.objects.filter(genres=14).order_by('?')[:6]
+        romance = Movie.objects.filter(genres=10749).order_by('?')[:6]
+        
+        context = {
+            'movies': movies,
+            'action': action,
+            'animation': animation,
+            'comedy': comedy,
+            'fantasy': fantasy,
+            'romance': romance,
+        }
     return render(request,'movies/recommendation.html',context)
