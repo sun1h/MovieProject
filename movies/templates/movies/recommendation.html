@@ -5,46 +5,147 @@
 <div style="padding-top: 8px + 1vh;">
   <section class="main-container">
     <h2 id="myList" style="margin-top: 7vmin; font-weight: bold;">영화추천</h2>
-    <!-- <div class="box mt-4">
-      {% for movie in movies %}
-      <a class="my-auto" href="{% url 'movies:detail' movie.pk %}">
-        <img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" 
-          class="card-img-top poster-img" alt="...">
-      </a> -->
-      <!-- {% endfor %} 
-       -->
+    <video style="display: none"; id="myVideo" controls autoplay loop>
+      <source id="videoSource" type="video/mp4">
+    </video>
+    <div class="container">
+      <p style="padding-top: 13px;">지금 듣고 있는 ost의 영화가 궁금하다면?</p>
+      <button style="color: #7517f1c9; --bs-btn-padding-y: 0.6rem; --bs-btn-padding-x: .9rem; 
+      --bs-btn-font-size: .9rem; background-color: rgb(255, 255, 255);" class="btn btn-outline-secondary" onclick="is_click()">click</button>
+      <div>
+       <i class="bi bi-pause-fill mt-1" id="runBtn" onclick="myRun()" 
+          style="cursor: pointer; font-size:2rem;"></i>
+       <i class="bi bi-volume-mute mt-1" id="muteBtn" onclick="myMute()" 
+          style="cursor: pointer; font-size:2rem;"></i> 
+      </div>
+    </div>
+    <div style="text-align: center;">
+      <img src="" alt="" id="image">
+      <br>
+      <div id="test">확인!
+      </div>
+      <p id="test2">g</p>
+      <div id="test3" >
+        <div class="container2" style="display: flex; justify-content: center; align-items: center;>
+          <form class="d-flex "  action="{% url 'movies:search' %}" method="get">
+            <input class="form-control" style="width: 30%;  " type="search" placeholder="영화를 검색해보세요" id="searchword" name="searchword" value="{{ searchword }}" aria-label="Search">
+            <button class="btn" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .25rem; --bs-btn-font-size: .25rem;" type="submit"><i class="bi bi-search"></i></button>
+        </form>
+      </div>
+    </div>
     </div>
   </section>
-
-  <!-- <div class="mt-4 d-flex justify-content-center">
-   
-  </div> -->
 </div>
 
-<style>
+<script>
+  var mp4Files = [
+    '{% static "./video/little.mp4" %}',
+    '{% static "./video/test.mp3" %}',
+  
+  ];
 
-  /* .pagination {
-    focus-box-shadow: 0 0 0 0 #141414 !important;
+  // Generate a random index
+  var randomIndex = Math.floor(Math.random() * mp4Files.length);
+
+  // Get the video player and video source elements
+  var myVideo = document.getElementById('myVideo');
+  var videoSource = document.getElementById('videoSource');
+
+  // Set the source of the video player to the randomly selected MP4 file
+  videoSource.src = mp4Files[randomIndex];
+
+  // Load and play the video
+  myVideo.load();
+  myVideo.play();
+
+  const video = document.querySelector("#myVideo");
+  const btn = document.querySelector("#runBtn");
+  function myRun() {
+    if (video.paused) {
+      video.play();
+      btn.setAttribute('class','bi bi-pause-fill mt-1');
+    } else {
+      video.pause();
+      btn.setAttribute('class','bi bi-play-fill mt-1');
+    }
   }
-  .pagination .page-link {
-    background: #141414;
-    color: #686868 ;  
-    
-    border-width: 1vmin;
-    border-color:  #141414;
-    border-radius: 50%;
+
+  const mute = document.querySelector("#muteBtn");
+  function myMute() {
+    if (video.muted) {
+      video.muted = false;
+      mute.setAttribute('class','bi bi-volume-up mt-1');
+    } else {
+      video.muted = true;
+      mute.setAttribute('class','bi bi-volume-mute mt-1' );
+    }
+  } 
+
+  // var is_clicked = false;
+  // function is_click(){
+  //   is_clicked = true;
+  //   var paragraph = document.getElementById("test");
+  //   paragraph.style.display = "block";
+  // }
+  var is_clicked = false;
+  function is_click(){
+    is_clicked = true;
+    var paragraph = document.getElementById("test");
+    var image = document.getElementById("image");
+    var t = document.getElementById("test2")
+    var search = document.getElementById("test3")
+    switch (randomIndex) {
+      case 0:
+        paragraph.innerText = "one";
+        image.src = "{% static './video/one.jpg' %}";
+        t.innerText="이 영화에 대해 궁금하다면 영화를 검색해보세요:)"
+        break;
+      case 1:
+        paragraph.innerText = "two";
+        image.src = "{% static './video/two.jpg' %}";
+        t.innerText="이 영화에 대해 궁금하다면 영화를 검색해보세요:)"
+        break;
+    }
+    paragraph.style.display = "block";
+    t.style.display = "block";
+    search.style.display = "block"
   }
-  .page-item.active .page-link {
-    color: #F3F3F3;
- 
-  } */
+</script>
+
+<style scoped>
+.container {
+  position: relative;
+  margin: 100px 0;
+  width: 400px;
+  height: 150px;
+  border-radius: 10px;
+  background-color: #7517f1c9;
+  box-shadow: 1px 20px 20px rgb(222, 185, 185);
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#test{
+  display: none;
+  margin-top: 15px;
+}
+
+#test2{
+  display: none;
+  margin-top: 15px;
+}
+
+#test3{
+  display: none;
+  margin-top: 15px;
+}
+.container2{
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
 </style>
 {% endblock content %}
-
- 
-
-
-
-
-
-

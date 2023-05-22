@@ -4,9 +4,10 @@ from django.http import JsonResponse,HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from dotenv import load_dotenv
 from movies.forms import RateForm
-from .models import Movie, Rate, Genre
+from .models import *
 from community.models import Review
 import random, requests, os
+from embed_video.admin import AdminVideoMixin
 
 load_dotenv()
 TMDB_API_KEY = os.environ.get('TMDB_API_KEY')
@@ -151,11 +152,19 @@ def delete_rate(request, movie_pk, rate_pk):
     return redirect('movies:detail', movie.pk)
 
 
-def recommendation(request):
-    fruit_list = ["귤","딸기","사과","감","바나나","파인애플","구아바", "복숭아", "망고스틴"]
-    hate = ["사과","구아바"]
-    context = {
-        'fruit_name' : fruit_list,
-        'hate' : hate,
+# def recommendation(request,):
+#     fruit_list = ["귤","딸기","사과","감","바나나","파인애플","구아바", "복숭아", "망고스틴"]
+#     hate = ["사과","구아바"]
+#     context = {
+#         'fruit_name' : fruit_list,
+#         'hate' : hate,
+#     }
+#     return render(request,'movies/recommendation.html',context)
+
+
+def recommendation(request,):
+    movie = Movie.objects.order_by('?')[:1]
+    context={
+        'movie':movie
     }
     return render(request,'movies/recommendation.html',context)
