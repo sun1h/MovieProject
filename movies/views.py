@@ -149,3 +149,13 @@ def delete_rate(request, movie_pk, rate_pk):
     if request.user == rate.user and request.method == 'POST':
         rate.delete()
     return redirect('movies:detail', movie.pk)
+
+
+def recommendation(request):
+    fruit_list = ["귤","딸기","사과","감","바나나","파인애플","구아바", "복숭아", "망고스틴"]
+    hate = ["사과","구아바"]
+    context = {
+        'fruit_name' : fruit_list,
+        'hate' : hate,
+    }
+    return render(request,'movies/recommendation.html',context)

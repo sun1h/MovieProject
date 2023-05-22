@@ -34,3 +34,6 @@ class Rate(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
+
+# class recommendation(models.Model):
