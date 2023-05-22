@@ -7,7 +7,7 @@ from movies.forms import RateForm
 from .models import *
 from community.models import Review
 import random, requests, os
-from embed_video.admin import AdminVideoMixin
+
 
 load_dotenv()
 TMDB_API_KEY = os.environ.get('TMDB_API_KEY')

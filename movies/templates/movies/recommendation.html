@@ -20,10 +20,12 @@
       </div>
     </div>
     <div style="text-align: center;">
+      
       <img src="" alt="" id="image">
+      <br><br>
+      <h3 id="test">확인!
+      </h3>
       <br>
-      <div id="test">확인!
-      </div>
       <p id="test2">g</p>
       <div id="test3" >
         <div class="container2" style="display: flex; justify-content: center; align-items: center;>
@@ -39,8 +41,15 @@
 
 <script>
   var mp4Files = [
-    '{% static "./video/little.mp4" %}',
-    '{% static "./video/test.mp3" %}',
+    '{% static "./video/Theme.m4a" %}',
+    '{% static "./video/Pirate.m4a" %}',
+    '{% static "./video/Beowulf.m4a" %}',
+    '{% static "./video/Pretty.m4a" %}',
+    '{% static "./video/Sting.m4a" %}',
+    '{% static "./video/FLAC.m4a" %}',
+    '{% static "./video/OST.m4a" %}',
+    '{% static "./video/1981.m4a" %}',
+    '{% static "./video/Roll (Pa.m4a" %}',
   
   ];
 
@@ -96,13 +105,48 @@
     var search = document.getElementById("test3")
     switch (randomIndex) {
       case 0:
-        paragraph.innerText = "one";
+        paragraph.innerText = "[ 대부 ]";
         image.src = "{% static './video/one.jpg' %}";
         t.innerText="이 영화에 대해 궁금하다면 영화를 검색해보세요:)"
         break;
       case 1:
-        paragraph.innerText = "two";
-        image.src = "{% static './video/two.jpg' %}";
+        paragraph.innerText = "[ 캐리비안의 해적: 블랙펄의 저주 ]";
+        image.src = "{% static './video/p.jpg' %}";
+        t.innerText="이 영화에 대해 궁금하다면 영화를 검색해보세요:)"
+        break;
+      case 2:
+        paragraph.innerText = "[ 베오울프 ]";
+        image.src = "{% static './video/b.jpg' %}";
+        t.innerText="이 영화에 대해 궁금하다면 영화를 검색해보세요:)"
+        break;
+      case 3:
+        paragraph.innerText = "[ 귀여운 여인 ]";
+        image.src = "{% static './video/pr.jpg' %}";
+        t.innerText="이 영화에 대해 궁금하다면 영화를 검색해보세요:)"
+        break;
+      case 4:
+        paragraph.innerText = "[ 레옹 ]";
+        image.src = "{% static './video/r.jpg' %}";
+        t.innerText="이 영화에 대해 궁금하다면 영화를 검색해보세요:)"
+        break;
+      case 5:
+        paragraph.innerText = "[ 기생충 ]";
+        image.src = "{% static './video/x.jpg' %}";
+        t.innerText="이 영화에 대해 궁금하다면 영화를 검색해보세요:)"
+        break;
+      case 6:
+        paragraph.innerText = "[ 록키 ]";
+        image.src = "{% static './video/J.jpg' %}";
+        t.innerText="이 영화에 대해 궁금하다면 영화를 검색해보세요:)"
+        break;
+      case 7:
+        paragraph.innerText = "[ 인디아나 존스: 마궁의 사원 ]";
+        image.src = "{% static './video/2.jpg' %}";
+        t.innerText="이 영화에 대해 궁금하다면 영화를 검색해보세요:)"
+        break;
+      case 8:
+        paragraph.innerText = "[ 조커 ]";
+        image.src = "{% static './video/d.jpg' %}";
         t.innerText="이 영화에 대해 궁금하다면 영화를 검색해보세요:)"
         break;
     }
@@ -146,6 +190,10 @@
   margin-right: auto;
 }
 
-
+img {
+  width: auto; height: auto;
+    max-width: 40vw;
+    max-height: 30vh;
+}
 </style>
 {% endblock content %}
