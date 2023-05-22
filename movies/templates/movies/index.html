@@ -7,14 +7,14 @@
     <div class="top"></div>
     <div class="bottom"></div>
     {% comment %} 비디오 https://www.w3schools.com/howto/howto_css_fullscreen_video.asp {% endcomment %}
-    <video id="myVideo" autoplay muted loop >
+    <video id="myVideo" autoplay muted loop>
       <source src="{% static "./video/little.mp4" %}" type="video/mp4">
     </video>
     
     <div class="content">
       <section class="left ms-2 mt-2">
-        <!-- <img class="ms-2 lg" src="{% static "./img/MOVIETRAP.png"" %}" alt=""> -->
-        <div class="d-flex mt-2">
+        <img class="ms-2 lg" src="{% static "./img/MOVIETRAP.png"" %}" alt="" style="height:10%">
+        <div class="d-flex mt-5">
       
           <i class="bi bi-pause-fill mt-1" id="runBtn" onclick="myRun()" 
           style="cursor: pointer; font-size:2rem;"></i>
@@ -32,6 +32,7 @@
 
   <h2 style="margin-top: 5vh;">My Movies</h2>
   {% if likes|length >= 1 %}
+  <p> - My likes Movies</p>
     <div class="box mt-4">
       {% for like in likes %}
       <a class="my-auto" href="{% url 'movies:detail' like.pk %}"><img src="https://image.tmdb.org/t/p/w500{{like.poster_path}}" 
@@ -45,6 +46,7 @@
   {% endif %}
   <br>
   {% if print_my_movies|length >= 1 %}
+  <p> - My review Movies</p>
     <div class="box mt-4">
       {% for movie in print_my_movies %}
       <a class="my-auto" href="{% url 'movies:detail' movie.pk %}"><img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" 

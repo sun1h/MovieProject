@@ -34,7 +34,8 @@ INSTALLED_APPS = [
     'accounts',
     'movies',
     'community',
-    
+
+
     # Third party apps
     # 'rest_framework',
     'bootstrap_pagination',

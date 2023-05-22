@@ -4,9 +4,10 @@ from django.http import JsonResponse,HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from dotenv import load_dotenv
 from movies.forms import RateForm
-from .models import Movie, Rate, Genre
+from .models import *
 from community.models import Review
 import random, requests, os
+from embed_video.admin import AdminVideoMixin
 
 load_dotenv()
 TMDB_API_KEY = os.environ.get('TMDB_API_KEY')
@@ -18,12 +19,20 @@ def index(request):
         my_reviews = Review.objects.filter(user_id=request.user.id)
         my_movies = []
 
+        my_like = Movie.objects.filter(like_users = request.user.id)
+        my_likes=[]
+
         for i in range(len(my_reviews)):
             my_movies.append(Movie.objects.get(pk=my_reviews[i].movie_id))
+
+        for i in range(len(my_like)):
+            my_likes.append(Movie.objects.get(pk=my_like[i].movie_id))
         
         print_my_movies = my_movies[:6]
+        likes = my_likes[:6]
     else:
         print_my_movies = []
+        likes = []
         
         
     popular_movies = Movie.objects.all().order_by('-popularity')[:6]
@@ -31,6 +40,7 @@ def index(request):
     best_movies = Movie.objects.all().order_by('-vote_average')[:6]
 
     context = {
+        'likes': likes,
         'print_my_movies': print_my_movies,
         'popular_movies': popular_movies,
         'best_movies': best_movies,
@@ -153,7 +163,8 @@ def delete_rate(request, movie_pk, rate_pk):
 @login_required
 def recommendation(request):
     if request.user.is_authenticated:
-        movies = Movie.objects.order_by('?')[:12]
+        movies = Movie.objects.order_by('?')[:6]
+        movie = Movie.objects.order_by('?')[:1]
         action = Movie.objects.filter(genres=28).order_by('?')[:6]
         animation = Movie.objects.filter(genres=16).order_by('?')[:6]
         comedy = Movie.objects.filter(genres=35).order_by('?')[:6]
@@ -162,10 +173,12 @@ def recommendation(request):
         
         context = {
             'movies': movies,
+            'movie': movie,
             'action': action,
             'animation': animation,
             'comedy': comedy,
             'fantasy': fantasy,
             'romance': romance,
         }
+
     return render(request,'movies/recommendation.html',context)

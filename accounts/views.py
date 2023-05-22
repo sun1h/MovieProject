@@ -108,76 +108,24 @@ def change_password(request):
 def profile(request, username):
     person = get_object_or_404(get_user_model(), username=username)
 
-    
+    likes = list(person.like_movies.all())[:10]
+    reviews = Review.objects.filter(user_id=person.id)
+    reviewed_movies = [[0, 'title'] for i in range(len(reviews))]
 
+    for i in range(len(reviews)):
+        reviewed_movies[i][0] = reviews[i].pk
+        reviewed_movies[i][1] = Movie.objects.get(pk=reviews[i].movie_id)
+
+    reviewed_movies = reviewed_movies[:10]
+        
     context = {
         'person': person,
+        'reviewed_movies': reviewed_movies,
+        'likes': likes,
     }
-
     return render(request, 'accounts/profile.html', context)
 
-    # likes = list(person.like_movies.all())[:12]
-    # genre_print = ''
-    # genres = {}
-    # for like in likes:
-    #     genre = like.genres.all()
-    #     for g in genre:
-    #         if g not in genres:
-    #             genres[g] = 1
-    #         else:
-    #             genres[g] += 1
 
-    # if len(genres) >= 5:
-    #     print_genres = sorted(genres.items(), key = lambda item: item[1], reverse=True)
-    
-    # #     for i in range(5):
-    # #         genre_print += str(print_genres[i][0]) + ' / '
-    
-
-    # #     genre_print = genre_print[:-3]
-
-    # # reviews = Review.objects.filter(user_id=person.id)
-    # # reviewed_movies = [[0, 'title'] for x in range(len(reviews))]
-
-    # # for i in range(len(reviews)):
-    # #     reviewed_movies[i][0] = reviews[i].pk
-    # #     reviewed_movies[i][1] = Movie.objects.get(pk=reviews[i].movie_id)
-
-    # # reviewed_movies = reviewed_movies[:12]
-        
-    # # context = {
-    # #     'person': person,
-    # #     'reviewed_movies': reviewed_movies,
-    # #     'likes': likes,
-    # #     'genre_print': genre_print,
-    # # }
-    # # return render(request, 'accounts/profile.html', context)
-
-# @login_required
-# @require_POST
-# def follow(request, user_pk):
-#     print('hi')
-#     if request.user.is_authenticated:
-#         person = get_object_or_404(get_user_model(), pk=user_pk)
-#         print(person)
-#         print('hi')
-#         user = request.user
-
-#         if person != user:
-#             if person.followers.filter(pk=user.pk).exists():
-#                 person.followers.remove(user)
-#                 is_followed = False
-#             else:
-#                 person.followers.add(user)
-#                 is_followed = True
-#             context = {
-#                 'is_followed': is_followed,
-#                 'followers_count': person.followers.count(),
-#                 'followings_count': person.followings.count(),
-#             }
-#             return JsonResponse(context)
-#         return redirect('accounts:profile', person.username)
-#     return redirect('accoutns:login')
 
 @require_POST
 def follow(request, username):
