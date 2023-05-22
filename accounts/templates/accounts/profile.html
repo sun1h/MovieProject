@@ -35,16 +35,7 @@
         {% endif %}
     </div>
    
-      <hr class="mx-auto ">
-      <h3 style="margin-top: 2vh;">My Favorite Genres</h3>
-      {% if genre_print != '' %}
-        <p class="mt-4">{{ genre_print }}</p>
-      {% else %}
-        <br>
-        <p>아직 좋아하는 장르를 찾기 어려워요!</p>
-        <p>더 많은 영화에 좋아요를 눌러 보세요 :)</p>
-      {% endif %}
-      <br>
+      
       
 
       <hr class="mx-auto">
@@ -58,8 +49,8 @@
         </div>
       {% else %}
         <br>
-        <p>아직 작성된 좋아요가 없어요!</p>
-        <p>영화를 보고 좋아요를 남겨 보세요 :)</p>
+        <p>아직 작성된 좋아요가 없어요</p>
+        <a id="none" href="{% url 'movies:all' %}" style="text-decoration: none; color: gray;">영화 좋아요 하러가기</a>
       {% endif %}
       <br>
       
@@ -68,14 +59,14 @@
       {% if reviewed_movies|length >= 1 %}
         <div class="box mt-4">
           {% for idx, movie in reviewed_movies %}
-          <a class="my-auto" href="{% url 'reviewboard:detail' idx %}"><img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" 
+          <a class="my-auto" href="{% url 'community:detail' idx %}"><img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" 
             class="card-img-top poster-img" alt="{{ movie.title }}_poster"></a>
           {% endfor %} 
         </div>
       {% else %}
         <br>
-        <p>아직 작성된 리뷰가 없어요!</p>
-        <p>영화를 보고 리뷰를 남겨 보세요 :)</p>
+        <p>아직 작성된 리뷰가 없어요</p>
+        <a id="none" href="{% url 'community:index' %}" style="text-decoration: none; color: gray">리뷰 남기기</a>
       {% endif %}
       <br>
 
@@ -88,7 +79,6 @@
 <style>
   .text-muted {
     color: #686868!important;
-    
   }
 </style>
 

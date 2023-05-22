@@ -19,12 +19,20 @@ def index(request):
         my_reviews = Review.objects.filter(user_id=request.user.id)
         my_movies = []
 
+        my_like = Movie.objects.filter(like_users = request.user.id)
+        my_likes=[]
+
         for i in range(len(my_reviews)):
             my_movies.append(Movie.objects.get(pk=my_reviews[i].movie_id))
+
+        for i in range(len(my_like)):
+            my_likes.append(Movie.objects.get(pk=my_like[i].movie_id))
         
         print_my_movies = my_movies[:6]
+        likes = my_likes[:6]
     else:
         print_my_movies = []
+        likes = []
         
         
     popular_movies = Movie.objects.all().order_by('-popularity')[:6]
@@ -32,6 +40,7 @@ def index(request):
     best_movies = Movie.objects.all().order_by('-vote_average')[:6]
 
     context = {
+        'likes': likes,
         'print_my_movies': print_my_movies,
         'popular_movies': popular_movies,
         'best_movies': best_movies,
