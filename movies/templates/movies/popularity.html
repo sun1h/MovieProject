@@ -6,25 +6,34 @@
   <section class="main-container">
     <h2 id="myList" style="margin-top: 7vmin; font-weight: bold;">인기순</h2>
     <div class="d-flex justify-content-end">
-        <div class="dropdown">
-            <button class="btn dropdown-toggle" style="background-color: #870FEA; color: white;" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-            인기순
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="{% url 'movies:all' %}">기본</a>
-            <a class="dropdown-item" href="{% url 'movies:recent' %}">최신순</a>
-            <a class="dropdown-item" href="{% url 'movies:old' %}">오래된순</a>
-            <a class="dropdown-item" href="{% url 'movies:top_rate' %}">평점높은순</a>
-            </div>
+      <div class="dropdown">
+        <button class="btn dropdown-toggle" style="background-color: #870FEA; color: white;" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+        인기순
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="{% url 'movies:all' %}">기본</a>
+          <a class="dropdown-item" href="{% url 'movies:recent' %}">최신순</a>
+          <a class="dropdown-item" href="{% url 'movies:old' %}">오래된순</a>
+          <a class="dropdown-item" href="{% url 'movies:top_rate' %}">평점높은순</a>
         </div>
+      </div>
     </div>
+
+    <br>
 
     <div class="box mt-4">
       {% for movie in page %}
-      <a class="my-auto" href="{% url 'movies:detail' movie.pk %}">
-        <img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" 
-          class="card-img-top poster-img" alt="...">
-      </a>
+      <div class="item-container">
+        <a class="my-auto" href="{% url 'movies:detail' movie.pk %}">
+          <div class="image">
+            <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" 
+              class="card-img-top poster-img" alt="...">
+          </div>
+          <div class="caption">
+            <p>{{ movie.title }}</p>
+          </div>
+        </a>
+      </div>
       {% endfor %} 
       
     </div>

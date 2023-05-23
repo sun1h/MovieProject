@@ -19,18 +19,27 @@
       </div>
     </div>
 
+    <br>
+
     <div class="box mt-4">
       {% for movie in page %}
-      <a class="my-auto" href="{% url 'movies:detail' movie.pk %}">
-        <img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" 
-          class="card-img-top poster-img" alt="...">
-      </a>
+      <div class="item-container">
+        <a class="my-auto" href="{% url 'movies:detail' movie.pk %}">
+          <div class="image">
+            <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" 
+              class="card-img-top poster-img" alt="...">
+          </div>
+          <div class="caption">
+            <p>{{ movie.title }}</p>
+          </div>
+        </a>
+      </div>
       {% endfor %} 
       
     </div>
   </section>
 
-  <div class="mt-5 d-flex justify-content-center">
+  <div class="d-flex justify-content-center">
     {% bootstrap_paginate page range=10 show_prev_next="false" show_first_last="true" %}
   </div>
 </div>

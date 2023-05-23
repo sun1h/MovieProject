@@ -58,6 +58,7 @@
       <button type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
       <button type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide-to="1" aria-label="Slide 2"></button>
       <button type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide-to="3" aria-label="Slide 4"></button>
     </div>
   </div>
   <br>
@@ -92,6 +93,7 @@
       <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
       <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="1" aria-label="Slide 2"></button>
       <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="3" aria-label="Slide 4"></button>
     </div>
   </div>
 
@@ -136,7 +138,22 @@
 
 .carousel-indicators {
   position: static;
-  margin-top: 5px;
+  margin-top: 2px;
+}
+
+.item-container {
+  transition: transform .3s;
+}
+
+.item-container:hover {
+  transition: transform .3s;
+  -ms-transform: scale(1.15);
+  -webkit-transform: scale(1.15);  
+  transform: scale(1.15);
+}
+
+.item-container img {
+  border-radius: 2px;
 }
 
 </style>

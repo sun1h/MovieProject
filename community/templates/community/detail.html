@@ -43,7 +43,7 @@
 
         <div class="d-flex pt-2 px-1"> 
           <div class=" me-auto">
-            <small >{{ review.user }} | {{ review.updated_at|date:'Y-m-d H:i' }} </small>
+            <small><a href="{% url 'accounts:profile' review.user %}" style="text-decoration: line; color: white;">{{ review.user }}</a> | {{ review.updated_at|date:'Y-m-d H:i' }} </small>
           </div>
         
           {% if user == review.user %}
@@ -68,7 +68,7 @@
         <ul>
           {% for comment in comments %}
             <li>
-              {{ comment.content }} -작성자: <a href="{% url 'accounts:profile' comment.user.username %}">{{comment.user}}</a>
+              {{ comment.content }} -작성자: <a href="{% url 'accounts:profile' comment.user.username %}" style="text-decoration: line; color: white;">{{comment.user}}</a>
               
               {% if user == comment.user %}
                 <form action="{% url 'community:comments_delete' review.pk comment.pk %}" method="POST" class="d-inline">

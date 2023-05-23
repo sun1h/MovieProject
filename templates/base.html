@@ -63,7 +63,7 @@
           </form>
           {% if request.user.is_authenticated %}
           <div class="netflix-dropdown-box dropdown" style="display: block;">
-            <button type="button" class="netflix-dropdown" data-bs-toggle="dropdown" href="#" aria-expanded="false"><i class=" bi bi-person-circle"></i></button>
+            <button type="button" class="netflix-dropdown" data-bs-toggle="dropdown" href="#" aria-expanded="false"><i class="bi bi-person-circle"></i></button>
             <ul class="dropdown-menu" style="margin-left: -20px-10vw;">
               <li><a href="{% url 'accounts:profile' user.username %}" class="dropdown-item" style="width: 160px;">마이페이지</a></li>
               <li><a href="{% url 'accounts:logout' %}" class="dropdown-item" style="width: 160px;">로그아웃</a></li>
@@ -100,22 +100,6 @@
         <a href="#" style="padding: 10px;"><i class="fab fa-twitter logo"></i></a>
         <a href="#" style="padding: 10px;"><i class="fab fa-instagram logo"></i></a>
         <a href="#" style="padding: 10px;"><i class="fab fa-youtube logo"></i></a>
-      </div>
-      <div class="sub-links" style="margin-top: 5vh;">
-        <ul class="text-left">
-          <li><a href="#">화면 해설</a></li>
-          <li><a href="#">고객 센터</a></li>
-          <li><a href="#">기프트카드</a></li>
-          <li><a href="#">미디어 센터</a></li>
-          <li><a href="#">투자 정보(IR)</a></li>
-          <li><a href="#">입사 정보</a></li>
-          <li><a href="#">이용 약관</a></li>
-          <li><a href="#">개인정보</a></li>
-          <li><a href="#">법적 고지</a></li>
-          <li><a href="#">쿠키 설정</a></li>
-          <li><a href="#">회사 정보</a></li>
-          <li><a href="#">문의하기</a></li>
-        </ul>
       </div>
     </section>
   </div>

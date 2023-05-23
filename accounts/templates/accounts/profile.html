@@ -42,9 +42,18 @@
       {% if likes|length >= 1 %}
         <div class="box mt-4">
           {% for like in likes %}
-          <a class="my-auto" href="{% url 'movies:detail' like.pk %}"><img src="https://image.tmdb.org/t/p/w500{{like.poster_path}}" 
-            class="card-img-top poster-img" alt="{{ like.title }}_poster"></a>
-          {% endfor %}
+          <div class="item-container">
+            <a class="my-auto" href="{% url 'movies:detail' like.pk %}">
+              <div class="image">
+                <img src="https://image.tmdb.org/t/p/w500{{ like.poster_path }}" 
+                  class="card-img-top poster-img" alt="...">
+              </div>
+              <div class="caption">
+                <p>{{ like.title }}</p>
+              </div>
+            </a>
+          </div>
+          {% endfor %} 
         </div>
       {% else %}
         <br>
@@ -62,8 +71,17 @@
       {% if reviewed_movies|length >= 1 %}
         <div class="box mt-4">
           {% for idx, movie in reviewed_movies %}
-          <a class="my-auto" href="{% url 'community:detail' idx %}"><img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" 
-            class="card-img-top poster-img" alt="{{ movie.title }}_poster"></a>
+          <div class="item-container">
+            <a class="my-auto" href="{% url 'community:detail' idx %}">
+              <div class="image">
+                <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" 
+                  class="card-img-top poster-img" alt="...">
+              </div>
+              <div class="caption">
+                <p>{{ movie.title }}</p>
+              </div>
+            </a>
+          </div>
           {% endfor %} 
         </div>
       {% else %}
