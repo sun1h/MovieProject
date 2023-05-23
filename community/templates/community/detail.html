@@ -18,9 +18,10 @@
  
       </div>
       <div class="col-12 col-lg-8 my-auto  ">
-        <p class="" style="color:#686868;">{{review.movie.release_date}} 개봉</p>
+        <br>
         <h2 class="pb-3">{{ review.movie.title }}</h2>
-        <p class="cnt-{{ review.movie.pk}}">장르 : {{ genre }} <i style="" class="ms-5 bi bi-star"></i>{{review.movie.vote_average}}</p> 
+        <p class="" style="color:gray;">{{review.movie.release_date}} 개봉</p>
+        <p class="cnt-{{ review.movie.pk}}">장르 : {{ genre }} <i class="ms-5 bi bi-star"></i>{{review.movie.vote_average}}</p> 
         
         <hr>         
   
@@ -49,10 +50,10 @@
           <div>
             <form action="{% url 'community:delete' review.pk %}" method="POST">
               <button style="color: #F3F3F3; --bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; 
-              --bs-btn-font-size: .9rem;" class=" btn btn-outline-secondary "><a href="{% url 'community:update' review.pk %}" class=" text-decoration-none" style="color: #F3F3F3;">수정</a></button>
+              --bs-btn-font-size: .9rem;" class="btn btn-outline-secondary "><a href="{% url 'community:update' review.pk %}" class=" text-decoration-none" style="color: #F3F3F3;">수정</a></button>
               {% csrf_token %}
               <button style="color: #F3F3F3; --bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; 
-              --bs-btn-font-size: .9rem;" class=" btn btn-outline-secondary ">삭제</button>
+              --bs-btn-font-size: .9rem;" class="btn btn-outline-secondary ">삭제</button>
             </form>
           </div>
           {% endif %}

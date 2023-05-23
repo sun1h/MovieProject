@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 from movies.forms import RateForm
 from .models import *
 from community.models import Review
-import random, requests, os
+import os
 
 
 load_dotenv()
@@ -15,42 +15,22 @@ TMDB_API_KEY = os.environ.get('TMDB_API_KEY')
 # Create your views here.
 def index(request):
     
-    if request.user.is_authenticated:
-        my_reviews = Review.objects.filter(user_id=request.user.id)
-        my_movies = []
+    popular_movies = Movie.objects.all().order_by('-popularity').order_by('?')[:18]
+    group_popular_movies = list([popular_movies[:6], popular_movies[6:12], popular_movies[12:]])
 
-        my_like = Movie.objects.filter(like_users = request.user.id)
-        my_likes=[]
-
-        for i in range(len(my_reviews)):
-            my_movies.append(Movie.objects.get(pk=my_reviews[i].movie_id))
-
-        for i in range(len(my_like)):
-            my_likes.append(Movie.objects.get(pk=my_like[i].movie_id))
-        
-        print_my_movies = my_movies[:6]
-        likes = my_likes[:6]
-    else:
-        print_my_movies = []
-        likes = []
-        
-        
-    popular_movies = Movie.objects.all().order_by('-popularity')[:6]
-
-    best_movies = Movie.objects.all().order_by('-vote_average')[:6]
+    best_movies = Movie.objects.all().order_by('-vote_average').order_by('?')[:18]
+    group_best_movies = list([best_movies[:6], best_movies[6:12], best_movies[12:]])
 
     context = {
-        'likes': likes,
-        'print_my_movies': print_my_movies,
-        'popular_movies': popular_movies,
-        'best_movies': best_movies,
+        'group_popular_movies': group_popular_movies,
+        'group_best_movies': group_best_movies,
     }
     
     return render(request, 'movies/index.html', context)
 
 
 def all(request):
-    movies = Movie.objects.all().order_by('id')
+    movies = Movie.objects.all().order_by('movie_id')
 
     page = Paginator(movies, 18)
     num = request.GET.get('page')
@@ -62,6 +42,57 @@ def all(request):
     }
     return render(request, 'movies/all.html', context)
 
+def old(request):
+    movies = Movie.objects.all().order_by('release_date')
+    
+    page = Paginator(movies, 18)
+    num = request.GET.get('page')
+    page = page.get_page(num)
+    
+    context = {
+        'movies': movies,
+        'page': page,
+    }
+    return render(request, 'movies/old.html', context)
+
+def recent(request):
+    movies = Movie.objects.all().order_by('-release_date')
+    
+    page = Paginator(movies, 18)
+    num = request.GET.get('page')
+    page = page.get_page(num)
+    
+    context = {
+        'movies': movies,
+        'page': page,
+    }
+    return render(request, 'movies/recent.html', context)
+
+def popularity(request):
+    movies = Movie.objects.all().order_by('-popularity')
+    
+    page = Paginator(movies, 18)
+    num = request.GET.get('page')
+    page = page.get_page(num)
+    
+    context = {
+        'movies': movies,
+        'page': page,
+    }
+    return render(request, 'movies/popularity.html', context)
+
+def top_rate(request):
+    movies = Movie.objects.all().order_by('-vote_average')
+    
+    page = Paginator(movies, 18)
+    num = request.GET.get('page')
+    page = page.get_page(num)
+    
+    context = {
+        'movies': movies,
+        'page': page,
+    }
+    return render(request, 'movies/top_rate.html', context)
 
 def search(request):
     movies = Movie.objects.all()
@@ -86,8 +117,8 @@ def detail(request, movie_pk):
 
     genre = ''
 
-    for g in genres:
-        genre += str(g)
+    for text in genres:
+        genre += str(text)
         genre += ' / '
     
     genre = genre[:-3]

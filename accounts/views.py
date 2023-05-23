@@ -1,4 +1,3 @@
-# from django.contrib import messages (alert 기능 사용하고싶을때)
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import update_session_auth_hash, get_user_model
@@ -6,7 +5,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.views.decorators.http import require_http_methods, require_POST
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import JsonResponse
 from .forms import CustomUserChangeForm, CustomUserCreationForm
 
 from community.models import Review, Movie
@@ -53,7 +51,6 @@ def login(request):
 
 
 # 로그아웃
-
 def logout(request):
     auth_logout(request)
     return redirect('movies:index')
@@ -93,7 +90,7 @@ def change_password(request):
         form = PasswordChangeForm(request.user, request.POST)
         if form.is_valid():
             form.save()
-            update_session_auth_hash(request, form.user)    # 비밀번호 변경시 로그아웃 방지
+            update_session_auth_hash(request, form.user)
             return redirect('movies:index')
     else:
         form = PasswordChangeForm(request.user)
@@ -108,19 +105,19 @@ def change_password(request):
 def profile(request, username):
     person = get_object_or_404(get_user_model(), username=username)
 
-    likes = list(person.like_movies.all())[:10]
+    likes = list(person.like_movies.all())[:6]
     reviews = Review.objects.filter(user_id=person.id)
-    reviewed_movies = [[0, 'title'] for i in range(len(reviews))]
+    reviewed = [[None, None] for _ in range(len(reviews))]
 
     for i in range(len(reviews)):
-        reviewed_movies[i][0] = reviews[i].pk
-        reviewed_movies[i][1] = Movie.objects.get(pk=reviews[i].movie_id)
-
-    reviewed_movies = reviewed_movies[:10]
+        reviewed[i][0] = reviews[i].pk
+        reviewed[i][1] = Movie.objects.get(pk=reviews[i].movie_id)
+        
+    reviewed = reviewed[:10]
         
     context = {
         'person': person,
-        'reviewed_movies': reviewed_movies,
+        'reviewed': reviewed,
         'likes': likes,
     }
     return render(request, 'accounts/profile.html', context)

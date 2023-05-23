@@ -53,8 +53,10 @@
             class="card-img-top poster-img" alt="...">
         </a>
         {% endfor %}
-      </div><br><br>
-  
+      </div>
+      
+      <br><br>
+
       <div class="d-flex justify-content-center">
         <a href="{% url 'movies:recommendation' %}">
           <button class="btn" id="recommendationBtn" style="--bs-btn-padding-y: .65rem; --bs-btn-padding-x: .8rem; --bs-btn-font-size: 1.2rem; background-color: #7517f1c9; color: white;" 
@@ -62,6 +64,7 @@
         </a>
       </div>
     </div><br>
+
 
     <hr>
 
@@ -283,7 +286,7 @@
   display: none;
 }
 
-img {
+#image {
   width: auto; height: auto;
     max-width: 40vw;
     max-height: 30vh;

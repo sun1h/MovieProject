@@ -4,19 +4,19 @@
 {% block content %}
 <div style="padding-top: 8px + 1vh;">
   <section class="main-container">
-    <h2 id="myList" style="margin-top: 7vmin; font-weight: bold;">모든 영화</h2>
+    <h2 id="myList" style="margin-top: 7vmin; font-weight: bold;">최신순</h2>
     <div class="d-flex justify-content-end">
-      <div class="dropdown">
-        <button class="btn dropdown-toggle" style="background-color: #870FEA; color: white;" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-          기본
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="{% url 'movies:popularity' %}">인기순</a>
-          <a class="dropdown-item" href="{% url 'movies:recent' %}">최신순</a>
-          <a class="dropdown-item" href="{% url 'movies:old' %}">오래된순</a>
-          <a class="dropdown-item" href="{% url 'movies:top_rate' %}">평점높은순</a>
+        <div class="dropdown">
+            <button class="btn dropdown-toggle" style="background-color: #870FEA; color: white;" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+            최신순
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="{% url 'movies:all' %}">기본</a>
+            <a class="dropdown-item" href="{% url 'movies:popularity' %}">인기순</a>
+            <a class="dropdown-item" href="{% url 'movies:old' %}">오래된순</a>
+            <a class="dropdown-item" href="{% url 'movies:top_rate' %}">평점높은순</a>
+            </div>
         </div>
-      </div>
     </div>
 
     <div class="box mt-4">
@@ -30,7 +30,7 @@
     </div>
   </section>
 
-  <div class="mt-5 d-flex justify-content-center">
+  <div class="mt-4 d-flex justify-content-center">
     {% bootstrap_paginate page range=10 show_prev_next="false" show_first_last="true" %}
   </div>
 </div>

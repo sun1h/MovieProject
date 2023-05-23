@@ -13,12 +13,11 @@
     
     <div class="content">
       <section class="left ms-2 mt-2">
-        <img class="ms-2 lg" src="{% static "./img/MOVIETRAP.png"" %}" alt="" style="height:10%">
+          <!-- <img class="ms-2 lg" src="{% static "./img/video_img.png" %}" alt="" style="height:10%"> -->
+
         <div class="d-flex mt-5">
-      
           <i class="bi bi-pause-fill mt-1" id="runBtn" onclick="myRun()" 
           style="cursor: pointer; font-size:2rem;"></i>
-
           <i class="bi bi-volume-mute mt-1" id="muteBtn" onclick="myMute()" 
           style="  cursor: pointer;   font-size:2rem;"></i> 
         </div>
@@ -30,58 +29,78 @@
 <!-- 추천 -->
 <section class="main-container" >
 
-  <h2 style="margin-top: 5vh;">My Movies</h2>
-  {% if likes|length >= 1 %}
-  <p> - My likes Movies</p>
-    <div class="box mt-4">
-      {% for like in likes %}
-      <a class="my-auto" href="{% url 'movies:detail' like.pk %}"><img src="https://image.tmdb.org/t/p/w500{{like.poster_path}}" 
-        class="card-img-top poster-img" alt="{{ like.title }}_poster"></a>
-      {% endfor %}
+  <h2 id="home" style="margin-top: 5vh;">인기있는 영화</h2>
+  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
     </div>
-  {% else %}
-    <br>
-    <p>아직 작성된 좋아요가 없어요!</p>
-    <p>영화를 보고 좋아요를 남겨 보세요 :)</p>
-  {% endif %}
-  <br>
-  {% if print_my_movies|length >= 1 %}
-  <p> - My review Movies</p>
-    <div class="box mt-4">
-      {% for movie in print_my_movies %}
-      <a class="my-auto" href="{% url 'movies:detail' movie.pk %}"><img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" 
-      onerror="this.src='{% static 'img/no_photo.png' %}'" class="card-img-top poster-img" alt="..."></a>
+    <div class="carousel-inner">
+      {% for movie_group in group_popular_movies %}
+      <div class="carousel-item {% if forloop.first %}active{% endif %}">
+        <div class="d-flex justify-content-around">
+          {% for movie in movie_group %}
+            {% if movie %}
+            <div class="p-2 item-container">
+              <a class="my-auto" href="{% url 'movies:detail' movie.pk %}"><img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" 
+              class="card-img-top poster-img" alt="..."></a>
+            </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
       {% endfor %} 
     </div>
-  {% else %}
-    <br>
-    <p>아직 작성된 리뷰가 없어요!</p>
-    <p>영화를 보고 리뷰를 남겨 보세요 :)</p>
-  {% endif %}
-  <br>
-
-   
-  <h2 id="home" style="margin-top: 5vh;">Popular Movies</h2>
-  <div class="box mt-4">
-    {% for movie in popular_movies %}
-    <a class="my-auto" href="{% url 'movies:detail' movie.pk %}"><img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" 
-    onerror="this.src='{% static 'img/no_photo.png' %}'" class="card-img-top poster-img" alt="..."></a>
-    {% endfor %} 
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
   </div>
   <br>
 
-  <h2 id="myList" style="margin-top: 5vh;">Top Rated</h2>
-  <div class="box mt-4">
-    {% for movie in best_movies %}
-    <a class="my-auto" href="{% url 'movies:detail' movie.pk %}"><img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" 
-      onerror="this.src='{% static 'img/no_photo.png' %}'" class="card-img-top poster-img" alt="..."></a>
-    {% endfor %} 
- 
+  <h2 id="myList" style="margin-top: 5vh;">평점 높은 영화</h2>
+  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      {% for movie_group in group_best_movies %}
+      <div class="carousel-item {% if forloop.first %}active{% endif %}">
+        <div class="d-flex justify-content-around">
+          {% for movie in movie_group %}
+            {% if movie %}
+            <div class="p-2 item-container">
+              <a class="my-auto" href="{% url 'movies:detail' movie.pk %}"><img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" 
+              class="card-img-top poster-img" alt="..."></a>
+            </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %} 
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
   </div>
   <br>
 </section>
 
- 
+
 <!-- 음소거 재생 -->
 <script>
   const video = document.querySelector("#myVideo");
@@ -95,7 +114,7 @@
       btn.setAttribute('class','bi bi-play-fill mt-1');
     }
   }
- 
+
   const mute = document.querySelector("#muteBtn");
   function myMute() {
     if (video.muted) {
@@ -107,7 +126,10 @@
     }
   } 
 
-
-
 </script>
+
+<style>
+
+</style>
+
 {% endblock content %}

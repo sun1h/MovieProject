@@ -15,7 +15,7 @@
       <div class="col-12 col-lg-8 my-auto  ">
         <br>
         <h2 class="pb-2">{{ movie.title }}</h2>
-        <p class="">{{movie.release_date}} 개봉</p>
+        <p class="" style="color: gray;">{{movie.release_date}} 개봉</p>
         <p class="">장르 : {{ genre }} <i style=" " class="ms-5 bi bi-star-fill"></i>{{movie.vote_average}}</p>
         <p class="mb-3 ">{{ movie.overview }}</p>
         {% if request.user.is_authenticated %}

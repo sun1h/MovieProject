@@ -261,7 +261,6 @@ button{
 
 .card-body{
   display: none;
-  /* height: 0px; */
   padding: 10px 15px;
   position: absolute;
   background-color: #141414;
@@ -280,7 +279,6 @@ button{
 
 .card:hover > .card-body{
   display: block;
-  /* height: max-content !important; */
 }
 
 
