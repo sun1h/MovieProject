@@ -36,6 +36,21 @@
       </div>
     </div>
     </div><br>
+    
+    <hr>
+    <h3 id="myList" style="margin-top: 7vmin; font-weight: bold;">당신의 좋아요한 영화기반 추천영화</h3>
+    <div class="box mt-4">
+      {% for movie in movie_lst %}
+          {% if movie.1.0 in genres_id  %}
+            {% if forloop.counter <= 8  %}
+              <a class="my-auto" href="{% url 'movies:detail' movie.0 %}">
+              <img src="https://image.tmdb.org/t/p/w500{{movie.2}}" class="card-img-top poster-img" alt="...">
+            </a>
+          {% endif %} 
+        {% endif %}      
+      {% endfor %}
+    </div><br><br>
+
 
     <hr>
     
@@ -236,13 +251,7 @@
     search.style.display = "block"
   }
 
-  const btnTag = document.querySelector('#recommendationBtn')
-  const divTag = document.querySelector('#recommendationList')
-
-  function recommendation() {
-    btnTag.classList.toggle('is_clicked');
-    divTag.style.display = '';
-  }
+  let seen_movies = []
 </script>
 
 <style scoped>
@@ -283,7 +292,7 @@
   display: none;
 }
 
-img {
+#image {
   width: auto; height: auto;
     max-width: 40vw;
     max-height: 30vh;

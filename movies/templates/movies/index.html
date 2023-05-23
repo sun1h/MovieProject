@@ -1,20 +1,21 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<!-- 비디오 -->
+
 <div class="">
   <section class="netflix-home-video">
     <div class="top"></div>
     <div class="bottom"></div>
-    {% comment %} 비디오 https://www.w3schools.com/howto/howto_css_fullscreen_video.asp {% endcomment %}
+  
     <video id="myVideo" autoplay muted loop>
       <source src="{% static "./video/Marvel.mp4" %}" type="video/mp4">
     </video>
     
-    <div class="content">
-      <section class="left ms-2 mt-2">
-        <img class="ms-2 lg" src="{% static "./img/MOVIETRAP.png"" %}" alt="" style="height:10%">
-        <div class="d-flex mt-5">
+    
+    <div class="content mt-1">
+      <section class="left ms-2 mt-5">
+        <!-- <img class="ms-2 lg" src="{% static "./img/logo.png"" %}" alt="" style="height:30%;"> -->
+        <div class="d-flex mt-1">
       
           <i class="bi bi-pause-fill mt-1" id="runBtn" onclick="myRun()" 
           style="cursor: pointer; font-size:2rem;"></i>
@@ -27,10 +28,11 @@
   </section>
 </div>
 
-<!-- 추천 -->
+
 <section class="main-container" >
 
   <h2 style="margin-top: 5vh;">My Movies</h2>
+  <br>
   {% if likes|length >= 1 %}
   <p> - My likes Movies</p>
     <div class="box mt-4">
@@ -40,9 +42,10 @@
       {% endfor %}
     </div>
   {% else %}
+  <p> - My likes Movies</p>
     <br>
     <p>아직 작성된 좋아요가 없어요!</p>
-    <p>영화를 보고 좋아요를 남겨 보세요 :)</p>
+    
   {% endif %}
   <br>
   {% if print_my_movies|length >= 1 %}
@@ -54,9 +57,10 @@
       {% endfor %} 
     </div>
   {% else %}
+  <p> - My review Movies</p>
     <br>
     <p>아직 작성된 리뷰가 없어요!</p>
-    <p>영화를 보고 리뷰를 남겨 보세요 :)</p>
+    
   {% endif %}
   <br>
 
@@ -81,8 +85,7 @@
   <br>
 </section>
 
- 
-<!-- 음소거 재생 -->
+
 <script>
   const video = document.querySelector("#myVideo");
   const btn = document.querySelector("#runBtn");

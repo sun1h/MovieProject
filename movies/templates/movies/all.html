@@ -4,7 +4,7 @@
 {% block content %}
 <div style="padding-top: 8px + 1vh;">
   <section class="main-container">
-    <h2 id="myList" style="margin-top: 7vmin; font-weight: bold;">영화</h2>
+    <h2 id="myList" style="margin-top: 7vmin; font-weight: bold;">영화 목록</h2>
     <div class="box mt-4">
       {% for movie in page %}
       <a class="my-auto" href="{% url 'movies:detail' movie.pk %}">
