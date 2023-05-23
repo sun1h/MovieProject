@@ -26,16 +26,10 @@
   </section>
 </div>
 
-<!-- 추천 -->
-<section class="main-container" >
 
-  <h2 id="home" style="margin-top: 5vh;">인기있는 영화</h2>
-  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    </div>
+<section class="main-container" >
+  <h3 id="home" style="margin-top: 5vh;" class="mx-3">인기있는 영화</h3>
+  <div id="carouselExampleIndicators1" class="carousel slide mx-3" data-bs-ride="carousel">
     <div class="carousel-inner">
       {% for movie_group in group_popular_movies %}
       <div class="carousel-item {% if forloop.first %}active{% endif %}">
@@ -52,24 +46,24 @@
       </div>
       {% endfor %} 
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
     </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
   </div>
   <br>
 
-  <h2 id="myList" style="margin-top: 5vh;">평점 높은 영화</h2>
-  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    </div>
+  <h3 id="myList" style="margin-top: 5vh;" class="mx-3">평점 높은 영화</h3>
+  <div id="carouselExampleIndicators2" class="carousel slide mx-3" data-bs-ride="carousel">
     <div class="carousel-inner">
       {% for movie_group in group_best_movies %}
       <div class="carousel-item {% if forloop.first %}active{% endif %}">
@@ -86,14 +80,19 @@
       </div>
       {% endfor %} 
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
     </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
   </div>
 
   </div>
@@ -129,6 +128,16 @@
 </script>
 
 <style>
+
+.carousel-control-prev, .carousel-control-next {
+  width: auto;
+  margin: 0 -40px;
+}
+
+.carousel-indicators {
+  position: static;
+  margin-top: 5px;
+}
 
 </style>
 
