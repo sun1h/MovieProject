@@ -4,7 +4,7 @@
 {% block content %}
 <div style="padding-top: 8px + 1vh;">
   <section class="main-container">
-    <h2 id="myList" style="margin-top: 7vmin; font-weight: bold;">영화추천</h2>
+    <h3 id="myList" style="margin-top: 7vmin; font-weight: bold;"></h3>
     <video style="display: none"; id="myVideo" controls autoplay loop>
       <source id="videoSource" type="video/mp4">
     </video>
@@ -28,14 +28,95 @@
       <br>
       <p id="test2">g</p>
       <div id="test3" >
-        <div class="container2" style="display: flex; justify-content: center; align-items: center;>
-          <form class="d-flex "  action="{% url 'movies:search' %}" method="get">
+        <div class="container2" style="display: flex; justify-content: center; align-items: center;">
+          <form class="d-flex"  action="{% url 'movies:search' %}" method="get">
             <input class="form-control" style="width: 30%;  " type="search" placeholder="영화를 검색해보세요" id="searchword" name="searchword" value="{{ searchword }}" aria-label="Search">
             <button class="btn" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .25rem; --bs-btn-font-size: .25rem;" type="submit"><i class="bi bi-search"></i></button>
         </form>
       </div>
     </div>
+    </div><br>
+
+    <hr>
+    
+    <h3 id="myList" style="margin-top: 7vmin; font-weight: bold;">이런 영화는 어떠세요?</h3>
+    <br>
+    <div class="d-flex justify-content-center" onclick="recommendation()">
+      <button class="btn" id="recommendationBtn" style="--bs-btn-padding-y: .65rem; --bs-btn-padding-x: .8rem; --bs-btn-font-size: 1.2rem; background-color: #7517f1c9; color: white;" type="submit">영화 추천받기</button>
+    </div><br>
+    
+    <div id="recommendationList" style="display: none;">
+      <div class="box mt-4">
+        {% for movie in movies %}
+        <a class="my-auto" href="{% url 'movies:detail' movie.pk %}">
+          <img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" 
+            class="card-img-top poster-img" alt="...">
+        </a>
+        {% endfor %}
+      </div><br><br>
+  
+      <div class="d-flex justify-content-center">
+        <a href="{% url 'movies:recommendation' %}">
+          <button class="btn" id="recommendationBtn" style="--bs-btn-padding-y: .65rem; --bs-btn-padding-x: .8rem; --bs-btn-font-size: 1.2rem; background-color: #7517f1c9; color: white;" 
+          type="submit">영화추천 다시받기</button>
+        </a>
+      </div>
+    </div><br>
+
+    <hr>
+
+    <h3 id="myList" style="margin-top: 7vmin; font-weight: bold;">장르별 영화추천</h3>
+
+    <h5 style="margin-top: 5vh;">Action</h5>
+    <div class="box mt-4">
+      {% for movie in action %}
+      <a class="my-auto" href="{% url 'movies:detail' movie.pk %}">
+        <img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" 
+          class="card-img-top poster-img" alt="...">
+      </a>
+      {% endfor %} 
     </div>
+
+    <h5 style="margin-top: 5vh;">Romance</h5>
+    <div class="box mt-4">
+      {% for movie in romance %}
+      <a class="my-auto" href="{% url 'movies:detail' movie.pk %}">
+        <img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" 
+          class="card-img-top poster-img" alt="...">
+      </a>
+      {% endfor %} 
+    </div>
+
+    <h5 style="margin-top: 5vh;">Comedy</h5>
+    <div class="box mt-4">
+      {% for movie in comedy %}
+      <a class="my-auto" href="{% url 'movies:detail' movie.pk %}">
+        <img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" 
+          class="card-img-top poster-img" alt="...">
+      </a>
+      {% endfor %} 
+    </div>
+
+    <h5 style="margin-top: 5vh;">Fantasy</h5>
+    <div class="box mt-4">
+      {% for movie in fantasy %}
+      <a class="my-auto" href="{% url 'movies:detail' movie.pk %}">
+        <img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" 
+          class="card-img-top poster-img" alt="...">
+      </a>
+      {% endfor %} 
+    </div>
+
+    <h5 style="margin-top: 5vh;">Animation</h5>
+    <div class="box mt-4">
+      {% for movie in animation %}
+      <a class="my-auto" href="{% url 'movies:detail' movie.pk %}">
+        <img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" 
+          class="card-img-top poster-img" alt="...">
+      </a>
+      {% endfor %} 
+    </div>
+
   </section>
 </div>
 
@@ -154,6 +235,14 @@
     t.style.display = "block";
     search.style.display = "block"
   }
+
+  const btnTag = document.querySelector('#recommendationBtn')
+  const divTag = document.querySelector('#recommendationList')
+
+  function recommendation() {
+    btnTag.classList.toggle('is_clicked');
+    divTag.style.display = '';
+  }
 </script>
 
 <style scoped>
@@ -188,6 +277,10 @@
   display: flex;
   margin-left: auto;
   margin-right: auto;
+}
+
+.is_clicked {
+  display: none;
 }
 
 img {

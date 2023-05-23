@@ -38,8 +38,8 @@
             <section>
               <button><a class="nav-link active" aria-current="page" href="{% url 'movies:index' %}">홈</a></button>
               <button><a class="nav-link active" aria-current="page" href="{% url 'movies:all' %}">영화</a></button>
-              <button><a class="nav-link active" aria-current="page" href="{% url 'community:index' %}">커뮤니티</a></button>
               <button><a class="nav-link active" aria-current="page" href="{% url 'movies:recommendation' %}">영화추천</a></button>
+              <button><a class="nav-link active" aria-current="page" href="{% url 'community:index' %}">커뮤니티</a></button>
             </section>
           </div>
           <div class="netflix-dropdown-box dropdown">
@@ -48,6 +48,7 @@
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
               <li><a class="dropdown-item" href="{% url 'movies:index' %}">홈</a></li>
               <li><a class="dropdown-item" href="{% url 'movies:all' %}">영화</a></li>
+              <li><a class="dropdown-item" href="{% url 'movies:recommendation' %}">영화추천</a></li>
               <li><a class="dropdown-item" href="{% url 'community:index' %}">커뮤니티</a></li>
             </ul>
           </div>
@@ -123,7 +124,7 @@
     $(window).scroll(function(){
         var scroll = $(window).scrollTop();
         if (scroll > 70) {
-          $(".netflix-navbar").css("background" , "#0C0C0C");
+          $(".netflix-navbar").css("background" , "#141414");
         }
   
         else{

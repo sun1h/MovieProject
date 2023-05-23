@@ -70,7 +70,7 @@ jedi==0.18.1
 jellyfish==0.9.0
 Jinja2==3.1.2
 joblib==1.1.0
-jsonschema==4.4.0
+jsonschema>=4.10.0, <5.0.0
 jupyter-client==7.3.1
 jupyter-contrib-core==0.4.0
 jupyter-contrib-nbextensions==0.5.1
@@ -124,7 +124,7 @@ pure-eval==0.2.2
 pycparser==2.21
 pygame==2.1.2
 Pygments==2.11.2
-PyJWT==2.4.0
+PyJWT<2.2.0
 pyOpenSSL==22.0.0
 pyparsing==3.0.9
 pyrsistent==0.18.1
@@ -170,7 +170,7 @@ tomli==2.0.1
 tomlkit==0.11.6
 toposort==1.7
 tornado==6.1
-traitlets==5.1.1
+traitlets>=5.3
 trio==0.20.0
 trio-websocket==0.9.2
 trove-classifiers==2022.12.22
