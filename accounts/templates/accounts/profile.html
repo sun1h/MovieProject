@@ -68,9 +68,9 @@
       
       <hr class="mx-auto ">
       <h3 style="margin-top: 2vh;">{{ person.username }}님이 리뷰를 작성한 영화</h3>
-      {% if reviewed_movies|length >= 1 %}
+      {% if reviewed|length >= 1 %}
         <div class="box mt-4">
-          {% for idx, movie in reviewed_movies %}
+          {% for idx, movie in reviewed %}
           <div class="item-container">
             <a class="my-auto" href="{% url 'community:detail' idx %}">
               <div class="image">

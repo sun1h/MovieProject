@@ -11,30 +11,20 @@
       <a href="{% url 'community:create' %}" role="button" style="color: white; --bs-btn-padding-y: .5rem; --bs-btn-padding-x: .6rem; 
       --bs-btn-font-size: 1rem; margin-top: 55px; background-color: #870FEA; color: white;" class="mb-5 btn">리뷰 작성</a>
     </div>
-    <!-- <div class="box h-100 mt-4">
+    <div class="box h-100 mt-4">
       {% for review in reviews %}
-        <a class="position-relative  my-auto" href="{% url 'community:detail' review.pk %}"><img src="https://image.tmdb.org/t/p/original{{ review.movie.poster_path }}" 
-        onerror="this.src='{% static 'img/no_photo.png' %}'" class="card-img-top poster-img" alt="{{ review.movie.title }}_poster">
-        <div class="  ">
-          <div class=" position-absolute w-100 h-100 text-center" style="top:50%;">
-            <div class="  card-title text-truncate h-50 "  style="background-color: rgba(0, 0, 0, 0.55);  padding: 0.3vmin 0.3vmin;"> 
-              <p class="text-break mt-3  text-truncate" style="font-size:calc(13px + 1vw); color: #F3F3F3;">{{review.title }}</p>
-              <p class="text-break   text-truncate" style="font-size:calc(8px + 1vw); color: #BBBBBB;">{{review.content|truncatechars:20 }}</p> 
-            </div>  
-          </div>
-        </div>  
-        </a>
+      <div class="hover">
+          <a class="position-relative my-auto" href="{% url 'community:detail' review.pk %}">
+            <img src="https://image.tmdb.org/t/p/original{{ review.movie.poster_path }}" 
+            class="poster-img" alt="{{ review.movie.title }}_poster">
+          </a>
+          <div class="text-truncate h-50" style="background-color: rgba(0, 0, 0, 0.55);  padding: 0.3vmin 0.3vmin;"> 
+            <p class="text-break mt-3 text-truncate fs-6" style="font-size:calc(13px + 1vw); color: #F3F3F3;">{{ review.title }}</p>
+            <small style="color: lightgray;">{{ review.user }}</small><br>
+            <small style="color: lightgray;">{{ review.created_at | date:'Y-m-d H:i' }}</small>
+          </div>  
+      </div>
       {% endfor %} 
-    </div> -->
-
-    <div class="card" style="width: 18rem;">
-      <ul class="list-group list-group-flush">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-      </ul>
     </div>
 
   </section>
@@ -42,6 +32,16 @@
 
 
 <style scoped>
+  .hover {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transition: .5s ease-in-out;
+    transition: .5s ease-in-out;
+  }
+  .hover:hover {
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+  }
 </style>
 
 {% endblock content %}
