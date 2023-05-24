@@ -17,7 +17,7 @@
         <div><button style="color: #F3F3F3; --bs-btn-padding-y: .3rem; --bs-btn-padding-x: .6rem; 
           --bs-btn-font-size: 1rem; background-color: #870FEA" class=" mt-2 btn">수정</div>
       </form>  
-      <form action="{% url 'accounts:delete' %}" method="POST">
+      <form action="{% url 'accounts:delete' %}" method="POST "  class="mx-auto" style="max-width: 50rem;">
         {% csrf_token %}
       <input type="submit" value="회원탈퇴" style="color: #F3F3F3; --bs-btn-padding-y: .3rem; --bs-btn-padding-x: .6rem; 
       --bs-btn-font-size: 1rem; background-color: #870FEA" class=" mt-2 btn">

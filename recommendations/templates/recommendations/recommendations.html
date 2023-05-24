@@ -2,19 +2,16 @@
 
 {% block content %}
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Recommendations</title>
-</head>
-<body>
-    <h1>Recommendations</h1>
-    <div>
+
+<div class="main-container">
+    <h1>영화 추천 목록</h1>
+    <br>
+    <div class="box mt-4">
         {% for image, title in recommendations %}
             <img src="{{ image }}">
             <p>{{ title }}</p>
         {% endfor %}
     </div>
-</body>
-</html>
+</div>
+
 {% endblock content %}

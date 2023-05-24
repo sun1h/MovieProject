@@ -2,13 +2,10 @@
 
 {% block content %}
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Nadoflix</title>
-</head>
-<body>
+
+<div class="main-container">
     <h1>머신러닝을 활용한 영화 추천 받기</h1>
+    <br>
     <form method="POST" {% url 'recommendations:home' %}>
         {% csrf_token %}
         <label for="title">Choose a movie you like:</label>
@@ -17,10 +14,9 @@
                 <option value="{{ movie }}">{{ movie }}</option>
             {% endfor %}
         </select>
-        <button type="submit">Recommend</button>
+        <button type="submit" style="background-color: #870FEA; color: #F3F3F3; --bs-btn-padding-y: .65rem; --bs-btn-padding-x: .8rem; 
+        --bs-btn-font-size: 0.8rem;" class="btn">추천받기</button>
     </form>
-</body>
-</html>
-
+</div>
 
 {% endblock content %}
