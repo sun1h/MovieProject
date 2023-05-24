@@ -5,8 +5,6 @@
 
 
 
-
-
 <div>
   <section class="main-container" style="padding: 50px;">
     <video style="display: none"; id="myVideo" controls autoplay loop>
@@ -26,9 +24,10 @@
         <div id="control-panel" class="control-panel">
           <div class="album-art"></div>
           <div class="controls">
-            <div class="prev"></div>
+            <a class="prev" href="{% url 'movies:recommendation' %}"></a>
+            
             <div id="play" class="play" onclick="myRun()"></div>
-            <div class="next"></div>
+            <a class="next" href="{% url 'movies:recommendation' %}"></a>
           </div>
         </div>
       </div>
@@ -225,7 +224,7 @@
 
   // Load and play the video
   myVideo.load();
-  myVideo.play();
+  myVideo.pause();
 
   const video = document.querySelector("#myVideo");
   const btn = document.querySelector("#runBtn");
