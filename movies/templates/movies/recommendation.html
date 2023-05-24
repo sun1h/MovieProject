@@ -329,6 +329,14 @@
   }
 
   const newMusicplayer = new musicPlayer();
+
+  const btnTag = document.querySelector('#recommendationBtn')
+  const divTag = document.querySelector('#recommendationList')
+
+  function recommendation() {
+    btnTag.classList.toggle('is_clicked');
+    divTag.style.display = '';
+  }
 </script>
 
 <style scoped>
