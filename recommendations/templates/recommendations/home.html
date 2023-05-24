@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Nadoflix</title>
+</head>
+<body>
+    <h1>머신러닝을 활용한 영화 추천 받기</h1>
+    <form method="POST" {% url 'recommendations:home' %}>
+        {% csrf_token %}
+        <label for="title">Choose a movie you like:</label>
+        <select name="title" id="title">
+            {% for movie in movie_list %}
+                <option value="{{ movie }}">{{ movie }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Recommend</button>
+    </form>
+</body>
+</html>
+
+
+{% endblock content %}
