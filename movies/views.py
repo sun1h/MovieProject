@@ -114,7 +114,7 @@ def search(request):
 
     return render(request, 'movies/searchresult.html', context)
 
-
+@login_required
 def detail(request, movie_pk):
     movie = get_object_or_404(Movie, pk=movie_pk)
     genres = movie.genres.all()

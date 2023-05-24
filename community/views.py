@@ -7,8 +7,9 @@ from .forms import *
 from django.views.decorators.http import require_POST
 
 # Create your views here.
-def index(request):     # 전체 리뷰 조회 인덱스 페이지
-    reviews = Review.objects.all().order_by('-pk')  # 최근 작성 게시물이 맨 위에
+@login_required
+def index(request):    
+    reviews = Review.objects.all().order_by('-pk')
 
     context = {
         'reviews': reviews,
