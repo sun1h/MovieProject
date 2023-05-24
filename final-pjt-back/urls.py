@@ -27,6 +27,5 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('community/', include('community.urls')),
     path('recommendations/', include('recommendations.urls')),
-    path('r/', include('r.urls')),
     re_path(r'^.*$', RedirectView.as_view(url='/', permanent=False), name='index'),
 ]
