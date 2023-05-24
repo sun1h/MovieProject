@@ -57,6 +57,7 @@ def logout(request):
 
 
 # 회원탈퇴
+@login_required
 @require_POST
 def delete(request):
     if request.user.is_authenticated:
