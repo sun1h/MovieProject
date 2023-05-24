@@ -227,13 +227,14 @@ def recommendation(request):
         for a in all_movie:
             m_pk = a.movie_id
             m_path = a.poster_path
+            m_title = a.title
             idx=a.genres.all()
             
             tmp=[]
             for i in idx:
                 tmp.append(i.genre_id)
 
-            movie_lst.append([m_pk,tmp,m_path])
+            movie_lst.append([m_pk,tmp,m_path, m_title])
        
     else:
         genres_id=[]

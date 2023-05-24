@@ -60,10 +60,17 @@
     <div class="box mt-4">
       {% for movie in movie_lst %}
           {% if movie.1.0 in genres_id  %}
-            {% if forloop.counter <= 8  %}
+            {% if forloop.counter <= 6  %}
+            <div class="item-container">
               <a class="my-auto" href="{% url 'movies:detail' movie.0 %}">
-              <img src="https://image.tmdb.org/t/p/w500{{movie.2}}" class="card-img-top poster-img" alt="...">
-            </a>
+                <div class="image">
+                  <img src="https://image.tmdb.org/t/p/w500{{movie.2}}" class="card-img-top poster-img" alt="...">
+                </div>
+                <div class="caption">
+                  <p>{{ movie.3 }}</p>
+                </div>
+              </a>
+            </div>
           {% endif %} 
         {% endif %}      
       {% endfor %}
