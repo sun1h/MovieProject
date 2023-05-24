@@ -10,16 +10,24 @@
     <h2 id="myList" style="margin-top: 5vh;">검색 결과</h2>
     
       {% if result_movies %}
-      <div class="box mt-4">
-        {% for movie in result_movies %}
-        <a class="my-auto text-decoration-none" href="{% url 'movies:detail' movie.pk %}"><img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" 
-          onerror="this.src='{% static 'img/no_photo.png' %}'" class="card-img-top poster-img" alt="..."></a>
-        {% endfor %}
+        <div class="box mt-4">
+          {% for movie in result_movies %}
+          <div class="item-container">
+            <a class="my-auto" href="{% url 'movies:detail' movie.pk %}">
+              <div class="image">
+                <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" 
+                  class="card-img-top poster-img" alt="...">
+              </div>
+              <div class="caption">
+                <p>{{ movie.title }}</p>
+              </div>
+            </a>
+          </div>
+          {% endfor %} 
       </div>
       {% else %}
         <br>
-        <p class="text-white">검색 결과가 없습니다!</p>
-        <p class="text-white">다른 검색어를 입력해보세요! :)</p>
+        <p class="text-white">검색 결과가 없습니다.</p>
       {% endif %}  
     
   </section>

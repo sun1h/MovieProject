@@ -82,13 +82,22 @@
     <div id="recommendationList" style="display: none;">
       <div class="box mt-4">
         {% for movie in movies %}
-        <a class="my-auto" href="{% url 'movies:detail' movie.pk %}">
-          <img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" 
-            class="card-img-top poster-img" alt="...">
-        </a>
-        {% endfor %}
-      </div><br><br>
-  
+        <div class="item-container">
+          <a class="my-auto" href="{% url 'movies:detail' movie.pk %}">
+            <div class="image">
+              <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" 
+                class="card-img-top poster-img" alt="...">
+            </div>
+            <div class="caption">
+              <p>{{ movie.title }}</p>
+            </div>
+          </a>
+        </div>
+        {% endfor %} 
+      </div>
+      
+      <br><br>
+
       <div class="d-flex justify-content-center">
         <a href="{% url 'movies:recommendation' %}">
           <button class="btn" id="recommendationBtn" style="--bs-btn-padding-y: .65rem; --bs-btn-padding-x: .8rem; --bs-btn-font-size: 1.2rem; background-color: #7517f1c9; color: white;" 
@@ -97,6 +106,7 @@
       </div>
     </div><br>
 
+
     <hr>
 
     <h3 id="myList" style="margin-top: 7vmin; font-weight: bold;">장르별 영화추천</h3>
@@ -104,50 +114,85 @@
     <h5 style="margin-top: 5vh;">Action</h5>
     <div class="box mt-4">
       {% for movie in action %}
-      <a class="my-auto" href="{% url 'movies:detail' movie.pk %}">
-        <img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" 
-          class="card-img-top poster-img" alt="...">
-      </a>
+      <div class="item-container">
+        <a class="my-auto" href="{% url 'movies:detail' movie.pk %}">
+          <div class="image">
+            <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" 
+              class="card-img-top poster-img" alt="...">
+          </div>
+          <div class="caption">
+            <p>{{ movie.title }}</p>
+          </div>
+        </a>
+      </div>
       {% endfor %} 
     </div>
 
     <h5 style="margin-top: 5vh;">Romance</h5>
     <div class="box mt-4">
       {% for movie in romance %}
-      <a class="my-auto" href="{% url 'movies:detail' movie.pk %}">
-        <img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" 
-          class="card-img-top poster-img" alt="...">
-      </a>
+      <div class="item-container">
+        <a class="my-auto" href="{% url 'movies:detail' movie.pk %}">
+          <div class="image">
+            <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" 
+              class="card-img-top poster-img" alt="...">
+          </div>
+          <div class="caption">
+            <p>{{ movie.title }}</p>
+          </div>
+        </a>
+      </div>
       {% endfor %} 
     </div>
 
     <h5 style="margin-top: 5vh;">Comedy</h5>
     <div class="box mt-4">
       {% for movie in comedy %}
-      <a class="my-auto" href="{% url 'movies:detail' movie.pk %}">
-        <img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" 
-          class="card-img-top poster-img" alt="...">
-      </a>
-      {% endfor %} 
+      <div class="item-container">
+        <a class="my-auto" href="{% url 'movies:detail' movie.pk %}">
+          <div class="image">
+            <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" 
+              class="card-img-top poster-img" alt="...">
+          </div>
+          <div class="caption">
+            <p>{{ movie.title }}</p>
+          </div>
+        </a>
+      </div>
+      {% endfor %}  
     </div>
 
     <h5 style="margin-top: 5vh;">Fantasy</h5>
     <div class="box mt-4">
       {% for movie in fantasy %}
-      <a class="my-auto" href="{% url 'movies:detail' movie.pk %}">
-        <img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" 
-          class="card-img-top poster-img" alt="...">
-      </a>
+      <div class="item-container">
+        <a class="my-auto" href="{% url 'movies:detail' movie.pk %}">
+          <div class="image">
+            <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" 
+              class="card-img-top poster-img" alt="...">
+          </div>
+          <div class="caption">
+            <p>{{ movie.title }}</p>
+          </div>
+        </a>
+      </div>
       {% endfor %} 
     </div>
 
     <h5 style="margin-top: 5vh;">Animation</h5>
     <div class="box mt-4">
       {% for movie in animation %}
-      <a class="my-auto" href="{% url 'movies:detail' movie.pk %}">
-        <img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" 
-          class="card-img-top poster-img" alt="...">
-      </a>
+      <div class="item-container">
+        <a class="my-auto" href="{% url 'movies:detail' movie.pk %}">
+          <div class="image">
+            <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" 
+              class="card-img-top poster-img" alt="...">
+          </div>
+          <div class="caption">
+            <p>{{ movie.title }}</p>
+          </div>
+        </a>
+      </div>
       {% endfor %} 
     </div>
 
