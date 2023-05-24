@@ -12,7 +12,7 @@ import os
 load_dotenv()
 TMDB_API_KEY = os.environ.get('TMDB_API_KEY')
 
-# Create your views here.
+
 def index(request):
     
     recent_movies = Movie.objects.all().order_by('-release_date')[:24]
@@ -195,9 +195,13 @@ def delete_rate(request, movie_pk, rate_pk):
         rate.delete()
     return redirect('movies:detail', movie.pk)
 
+
+
+
 @login_required
 def recommendation(request):
     if request.user.is_authenticated:
+        all_movie = Movie.objects.all()[:200]
         movies = Movie.objects.order_by('?')[:6]
         movie = Movie.objects.order_by('?')[:1]
         action = Movie.objects.filter(genres=28).order_by('?')[:6]
@@ -206,14 +210,46 @@ def recommendation(request):
         fantasy = Movie.objects.filter(genres=14).order_by('?')[:6]
         romance = Movie.objects.filter(genres=10749).order_by('?')[:6]
         
-        context = {
-            'movies': movies,
-            'movie': movie,
-            'action': action,
-            'animation': animation,
-            'comedy': comedy,
-            'fantasy': fantasy,
-            'romance': romance,
-        }
 
+        my_like = Movie.objects.filter(like_users = request.user.id)
+        my_likes=[]
+        genres_id=[]
+        movie_lst=[]
+
+        for i in range(len(my_like)):
+            my_likes.append(Movie.objects.get(pk=my_like[i].movie_id).genres.all())
+        likes = my_likes[:10]
+
+        for l in likes:
+            for i in range(len(l)):
+                genres_id.append(l[i].genre_id)
+        
+        for a in all_movie:
+            m_pk = a.movie_id
+            m_path = a.poster_path
+            idx=a.genres.all()
+            
+            tmp=[]
+            for i in idx:
+                tmp.append(i.genre_id)
+
+            movie_lst.append([m_pk,tmp,m_path])
+       
+    else:
+        genres_id=[]
+    
+
+    context = {
+        'movies': movies,
+        'movie': movie,
+        'action': action,
+        'animation': animation,
+        'comedy': comedy,
+        'fantasy': fantasy,
+        'romance': romance,
+        'genres_id': genres_id,
+        'movie_lst': movie_lst,
+    }
+    
+        
     return render(request,'movies/recommendation.html',context)
