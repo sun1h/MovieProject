@@ -26,12 +26,11 @@
   </section>
 </div>
 
-
 <section class="main-container" >
-  <h3 id="home" style="margin-top: 5vh;" class="mx-3">인기있는 영화</h3>
+  <h3 id="home" style="margin-top: 5vh;" class="mx-3">최근 개봉한 영화</h3>
   <div id="carouselExampleIndicators1" class="carousel slide mx-3" data-bs-ride="carousel">
     <div class="carousel-inner">
-      {% for movie_group in group_popular_movies %}
+      {% for movie_group in group_recent_movies %}
       <div class="carousel-item {% if forloop.first %}active{% endif %}">
         <div class="d-flex justify-content-around">
           {% for movie in movie_group %}
@@ -63,10 +62,10 @@
   </div>
   <br>
 
-  <h3 id="myList" style="margin-top: 5vh;" class="mx-3">평점 높은 영화</h3>
+  <h3 id="home" style="margin-top: 5vh;" class="mx-3">인기있는 영화</h3>
   <div id="carouselExampleIndicators2" class="carousel slide mx-3" data-bs-ride="carousel">
     <div class="carousel-inner">
-      {% for movie_group in group_best_movies %}
+      {% for movie_group in group_popular_movies %}
       <div class="carousel-item {% if forloop.first %}active{% endif %}">
         <div class="d-flex justify-content-around">
           {% for movie in movie_group %}
@@ -94,6 +93,41 @@
       <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="1" aria-label="Slide 2"></button>
       <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="2" aria-label="Slide 3"></button>
       <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="3" aria-label="Slide 4"></button>
+    </div>
+  </div>
+  <br>
+
+  <h3 id="myList" style="margin-top: 5vh;" class="mx-3">평점 높은 영화</h3>
+  <div id="carouselExampleIndicators3" class="carousel slide mx-3" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      {% for movie_group in group_best_movies %}
+      <div class="carousel-item {% if forloop.first %}active{% endif %}">
+        <div class="d-flex justify-content-around">
+          {% for movie in movie_group %}
+            {% if movie %}
+            <div class="p-2 item-container">
+              <a class="my-auto" href="{% url 'movies:detail' movie.pk %}"><img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" 
+              class="card-img-top poster-img" alt="..."></a>
+            </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %} 
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators3" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators3" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators3" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators3" data-bs-slide-to="3" aria-label="Slide 4"></button>
     </div>
   </div>
 

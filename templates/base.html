@@ -91,17 +91,24 @@
     <!-- FOOTER LINKS -->
     <footer class="text-start">
       <hr>
-      <p><b>&copy; 2023 Company, Inc</b></p>
-      <b>김수민 최혜원</b>
-    </footer>
-    <section class="link" style="padding: 50px;">
-      <div class="logos ps-1">
-        <a href="#" style="padding: 10px;"><i class="fab fa-facebook-square logo"></i></a>
-        <a href="#" style="padding: 10px;"><i class="fab fa-twitter logo"></i></a>
-        <a href="#" style="padding: 10px;"><i class="fab fa-instagram logo"></i></a>
-        <a href="#" style="padding: 10px;"><i class="fab fa-youtube logo"></i></a>
+      <div class="d-flex justify-content-between">
+        <div class="d-flex align-items-baseline">
+          <a class="navbar-brand" href="{% url 'movies:index' %}">
+            <img src="{% static './img/MOVIETRAP_PURPLE.png' %}" alt="">
+          </a>&nbsp; &nbsp;
+          <p><b>&copy; 2023 Company, Inc</b></p>
+        </div>
+        <!-- <b>김수민 최혜원</b> -->
+        <!-- <section class="link" style="padding: 50px;"> -->
+          <div class="logos ps-1">
+            <a href="#" style="padding: 10px;"><i class="fab fa-facebook-square logo"></i></a>
+            <a href="#" style="padding: 10px;"><i class="fab fa-twitter logo"></i></a>
+            <a href="#" style="padding: 10px;"><i class="fab fa-instagram logo"></i></a>
+            <a href="#" style="padding: 10px;"><i class="fab fa-youtube logo"></i></a>
+          </div>
+        <!-- </section> -->
       </div>
-    </section>
+    </footer>
   </div>
 </div>
 

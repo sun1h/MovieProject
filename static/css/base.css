@@ -253,10 +253,10 @@ button{
 }
 
 
-.card:hover{
+/* .card:hover{
   transform: scaleX(1.4) scaleY(1.4);
   z-index: 10;
-}
+} */
 
 
 .card-body{

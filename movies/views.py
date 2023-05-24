@@ -15,13 +15,17 @@ TMDB_API_KEY = os.environ.get('TMDB_API_KEY')
 # Create your views here.
 def index(request):
     
-    popular_movies = Movie.objects.all().order_by('-popularity').order_by('?')[:24]
+    recent_movies = Movie.objects.all().order_by('-release_date')[:24]
+    group_recent_movies = list([recent_movies[:6], recent_movies[6:12], recent_movies[12:18], recent_movies[18:]])
+    
+    popular_movies = Movie.objects.all().order_by('-popularity')[:24]
     group_popular_movies = list([popular_movies[:6], popular_movies[6:12], popular_movies[12:18], popular_movies[18:]])
 
-    best_movies = Movie.objects.all().order_by('-vote_average').order_by('?')[:24]
+    best_movies = Movie.objects.all().order_by('-vote_average')[:24]
     group_best_movies = list([best_movies[:6], best_movies[6:12], best_movies[12:18], best_movies[18:]])
 
     context = {
+        'group_recent_movies': group_recent_movies,
         'group_popular_movies': group_popular_movies,
         'group_best_movies': group_best_movies,
     }
