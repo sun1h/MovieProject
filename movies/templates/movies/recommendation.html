@@ -84,7 +84,6 @@
     <div class="d-flex justify-content-center" onclick="recommendation()">
       <button class="btn" id="recommendationBtn" style="--bs-btn-padding-y: .65rem; --bs-btn-padding-x: .8rem; --bs-btn-font-size: 1.2rem; background-color: #7517f1c9; color: white;" type="submit">영화 추천받기</button>
     </div><br>
-    <p>더 많은 영화를 추천받고 싶다면 <a href="{% url 'recommendations:home' %}">여기</a>를 클릭하세요!</p>
     <div id="recommendationList" style="display: none;">
       <div class="box mt-4">
         {% for movie in movies %}
@@ -109,8 +108,9 @@
           <button class="btn" id="recommendationBtn" style="--bs-btn-padding-y: .65rem; --bs-btn-padding-x: .8rem; --bs-btn-font-size: 1.2rem; background-color: #7517f1c9; color: white;" 
           type="submit">영화추천 다시받기</button>
         </a>
-      </div>
+      </div><br>
     </div><br>
+    <p class="text-left">더 많은 영화를 추천받고 싶다면 <a href="{% url 'recommendations:home' %}" style="color: #F3F3F3;">여기</a>를 클릭하세요!</p>
 
 
     <hr>
