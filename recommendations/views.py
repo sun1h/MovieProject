@@ -56,7 +56,7 @@ def home(request):
         title = request.POST['title']
         recommendations = get_recommendations(title)
         print(recommendations)
-        print('hi')
+
         context = {
             'recommendations': recommendations
         }
