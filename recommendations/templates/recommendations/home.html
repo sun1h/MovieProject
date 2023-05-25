@@ -6,7 +6,7 @@
 <div class="main-container">
     <h1>머신러닝을 활용한 영화 추천 받기</h1>
     <br>
-    <form method="POST" {% url 'recommendations:home' %}>
+    <form method="POST" href="{% url 'recommendations:home' %}">
         {% csrf_token %}
         <label for="title">Choose a movie you like:</label>
         <select name="title" id="title">

@@ -8,8 +8,15 @@
     <br>
     <div class="box mt-4">
         {% for image, title in recommendations %}
-            <img src="{{ image }}">
-            <p>{{ title }}</p>
+        <div class="item-container">
+            <div class="image">
+                <img src="{{ image }}" 
+                    class="card-img-top poster-img" alt="...">
+            </div>
+            <div class="caption">
+                <p>{{ title }}</p>
+            </div>
+        </div>
         {% endfor %}
     </div>
 </div>
