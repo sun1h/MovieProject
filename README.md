@@ -20,6 +20,11 @@ MOVIETRAP은 trap의 **붙잡다**라는 뜻을 따와서 `사용자들이 원�
 ### 설치 가이드 💻
 
 ```
+$ git clone 'repository url'
+$ git lfs pull
+```
+
+```
 $ pip install -r requirements.txt
 $ python manage.py migrate
 $ python manage.py loaddata genres.json movies.json
