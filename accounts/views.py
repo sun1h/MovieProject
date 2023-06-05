@@ -56,16 +56,6 @@ def logout(request):
     return redirect('movies:index')
 
 
-# 회원탈퇴
-@login_required
-@require_POST
-def delete(request):
-    if request.user.is_authenticated:
-        request.user.delete()
-        auth_logout(request)
-    return redirect('movies:index')
-
-
 # 회원정보 수정
 @login_required
 @require_http_methods(['GET', 'POST'])

@@ -11,18 +11,14 @@
         <hr class="mx-auto" style="max-width: 50rem;">
       </div>
       <div>
-      <form class="mx-auto" style="max-width: 50rem;" action="" method="POST">
-        {% csrf_token %}
-        {% bootstrap_form form %}
-        <div><button style="color: #F3F3F3; --bs-btn-padding-y: .3rem; --bs-btn-padding-x: .6rem; 
-          --bs-btn-font-size: 1rem; background-color: #870FEA" class=" mt-2 btn">수정</div>
-      </form>  
-      <form action="{% url 'accounts:delete' %}" method="POST "  class="mx-auto" style="max-width: 50rem;">
-        {% csrf_token %}
-      <input type="submit" value="회원탈퇴" style="color: #F3F3F3; --bs-btn-padding-y: .3rem; --bs-btn-padding-x: .6rem; 
-      --bs-btn-font-size: 1rem; background-color: #870FEA" class=" mt-2 btn">
+        <form class="mx-auto" style="max-width: 50rem;" action="" method="POST">
+          {% csrf_token %}
+          {% bootstrap_form form %}
+          <div><button style="color: #F3F3F3; --bs-btn-padding-y: .3rem; --bs-btn-padding-x: .6rem; 
+            --bs-btn-font-size: 1rem; background-color: #870FEA" class=" mt-2 btn">수정</div>
+        </form>
+      </div>
     </div>
-  </div>
   </div>
 </section> 
 
