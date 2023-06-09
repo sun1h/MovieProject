@@ -45,7 +45,7 @@ $ python manage.py runserver
 
 | 팀원 | 업무 내용 |
 | :----: | :--------- |
-| <a href="https://github.com/sun1h"><img src="https://avatars.githubusercontent.com/u/124047574?v=4" width="100px;"/><br>최혜원 (sun1h)</a> | <li>accounts 관련 기능 설계 및 개발 (로그인, 로그아웃, 회원정보수정, 회원탈퇴, 프로필, 팔로잉 기능)</li><li>community 관련 기능 설계 및 개발 (영화 한줄 감상평, 리뷰 작성 / 수정 / 삭제, 리뷰 댓글 작성)</li><li>영화 추천 알고리즘 (영화 OST 재생 및 영화 추천, 사용자가 좋아요 버튼을 누른 영화 기반 추천)</li><li>웹 페이지 디자인</li> <li>러닝머신 기반 영화 추천 알고리즘 구현</li><li>DB 만들기</li> |
+| <a href="https://github.com/sun1h"><img src="https://avatars.githubusercontent.com/u/124047574?v=4" width="100px;"/><br>최혜원 (sun1h)</a> | <li>accounts 관련 기능 설계 및 개발 (로그인, 로그아웃, 회원정보수정, 회원탈퇴, 프로필, 팔로잉 기능)</li><li>community 관련 기능 설계 및 개발 (영화 한줄 감상평, 리뷰 작성 / 수정 / 삭제, 리뷰 댓글 작성)</li><li>영화 추천 알고리즘 (영화 OST 재생 및 영화 추천, 사용자가 좋아요 버튼을 누른 영화 기반 추천)</li><li>웹 페이지 디자인</li> <li>머신러닝 기반 영화 추천 알고리즘 구현</li> |
 | <a href="https://github.com/sm9906"><img src="https://avatars.githubusercontent.com/u/105291153?v=4" width="100px;"/><br>김수민 (sm9906)</a> | <li>TMDB API키를 사용하여 영화 데이터 뽑아오기</li><li>movies 관련 기능 설계 및 개발 (메인 페이지 영화 인덱스, 영화 아이디 / 개봉일 / 평점 / 인기순 영화 조회 기능, 제목 기반 영화 검색 기능)</li><li>영화 추천 알고리즘 (영화 랜덤 추천, 장르별 영화 랜덤 추천)</li><li>웹 페이지 디자인</li> |
 
 ## 2. 목표 서비스 구현 및 실제 구현 정도
