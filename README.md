@@ -73,7 +73,7 @@ $ python manage.py runserver
 
 ## 3. 데이터베이스 모델링 (ERD)
 
-![](./README/ERD.png)
+![](3.PNG)
 
 ## 4. 영화 추천 알고리즘에 대한 기술적 설명
 
